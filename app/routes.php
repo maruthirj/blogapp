@@ -16,7 +16,8 @@ Route::get('/', function()
 	return View::make('hello');
 });
 
-Route::get('users', function()
+Route::get('images/{name}', function($name)
 {
-	return 'Users!';
-});
+    return View::make('imageView')->with("name",$name);
+})
+->where('name', '[A-Za-z\-]+');
