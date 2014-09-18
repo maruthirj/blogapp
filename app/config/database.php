@@ -41,7 +41,7 @@ return array(
 	| All database work in Laravel is done through the PHP PDO facilities
 	| so make sure you have the driver for your particular database of
 	| choice installed on your machine before you begin development.
-	|
+	|CREATE SCHEMA `blogapp` DEFAULT CHARACTER SET utf8 ;
 	*/
 
 	'connections' => array(
@@ -54,9 +54,9 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'localhost',
-			'database'  => 'forge',
-			'username'  => 'forge',
+			'host'      => '127.0.0.1',
+			'database'  => 'blogapp',
+			'username'  => 'root',
 			'password'  => '',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',

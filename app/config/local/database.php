@@ -2,6 +2,7 @@
 
 return array(
 
+		'default' => 'mysql',
 	/*
 	|--------------------------------------------------------------------------
 	| Database Connections
@@ -23,13 +24,14 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'homestead',
-			'username'  => 'homestead',
-			'password'  => 'secret',
+			'database'  => 'blogapp',
+			'username'  => 'root',
+			'password'  => '',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
 		),
+			
 
 		'pgsql' => array(
 			'driver'   => 'pgsql',
