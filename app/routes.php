@@ -13,7 +13,7 @@
 
 Route::get('/', function()
 {
-	return View::make('hello');
+	return View::make('includes.decorator')->nest('contentView', 'welcome');
 });
 
 Route::get('images/{name}', function($name)
@@ -21,3 +21,8 @@ Route::get('images/{name}', function($name)
     return View::make('imageView')->with("name",$name);
 })
 ->where('name', '[A-Za-z\-]+');
+Route::get('addContent', function()
+{
+	return View::make('includes.decorator')->nest('contentView', 'addContent');
+});
+Route::post('saveContent', 'ContentController@saveContent');
