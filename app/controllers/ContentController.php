@@ -21,6 +21,22 @@ class ContentController extends BaseController {
 			$post->post_text = Input::get("postText");
 			$post->user_id = 1;
 			$post->save();
+			$tagNames = Input::get("tags");
+			Log::debug("Tag names: ".implode(",",$tagNames));
+			$tm = new TagManager();
+			$rankCounter = 0;
+			foreach ($tagNames as $tagName) {
+				$rankCounter = $rankCounter+1;
+				Log::debug("Tag name = ".$tagName);
+				$id = $tm->findOrCreateTag($tagName);
+				Log::debug("Tag id: ".$id);
+				$postTagRank = new Posttagrank();
+				$postTagRank->post_id = $post->id;
+				$postTagRank->tag_id = $id;
+				$postTagRank->rank = $rankCounter;
+				$postTagRank->save();
+			}
+			
 		}else{
 			Log::error('File is invalid');
 		}

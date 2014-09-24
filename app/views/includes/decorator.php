@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>FlikBuk - Nonstop Engagement</title>
+	<link href="components/jquery-ui/themes/smoothness/jquery-ui.css" type="text/css" rel="stylesheet"/>
 	<style>
 		@import url(//fonts.googleapis.com/css?family=Lato:700);
 
@@ -21,6 +22,8 @@
 			margin: 16px 0 0 0;
 		}
 	</style>
+	<script type="text/javascript" src="/components/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/components/jquery-ui/jquery-ui.min.js"></script>
 </head>
 <body>
 	<?php echo $contentView; ?>
