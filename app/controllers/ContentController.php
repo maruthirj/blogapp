@@ -1,47 +1,234 @@
 <?php
+use Illuminate\Database\Eloquent\Collection;
 /*
  *	Controller handling saving and rendering content
  *
  */
 class ContentController extends BaseController {
 
+	/**
+	 * This is for croppic to temporarily upload a new image when it is selected (before cropping)
+	 * Has to return a json of this format:
+	 * {
+				"status":"success",
+				"url":"path/img.jpg",
+				"width":originalImgWidth,
+				"height":originalImgHeight
+		}
+		
+		OR
+		
+		{
+			"status":"error",
+			"message":"your error message text"
+		}
+	 */
+	public function tempImageUpload()
+	{
+		if (Input::file('img')->isValid())
+		{
+			$file = Input::file('img');
+			$fileExtArr = explode(".", $file->getClientOriginalName());
+			$fileExt = $fileExtArr[count($fileExtArr)-1];
+			Log::debug("File ext: ".$fileExt);
+			if(strlen($fileExt)!=3){
+				return Response::json(array('status' => 'error',
+						'message' => 'Can upload only image files with a 3 character extension'));
+			}
+			if(strcasecmp($fileExt,"jpg")!=0 && strcasecmp($fileExt,"png")!=0){
+				return Response::json(array('status' => 'error',
+						'message' => 'Only JPG and PNG formats are accepted'));
+			}
+			$fileName = uniqid();
+			Log::debug('File is valid. Save it as: '.$fileName);
+			Log::debug(__DIR__.'/../../public/img/content/tmp/');
+			
+			$image = Image::make($file->getRealPath());
+			$height = $image->height();
+			$width = $image->width();
+			if($height<600 || $width<900){
+				return Response::json(array('status' => 'error',
+						'message' => 'Minimum image size W x H shoud be 900 x 600'));
+			}
+			$file->move(__DIR__.'/../../public/img/content/tmp/', $fileName.".".$fileExt);
+				
+			return Response::json(array('status' => 'success', 
+										'url' => 'img/content/tmp/'.$fileName.".".$fileExt,
+										'width' => $width,
+										'height' => $height));
+		}
+		return Response::json(array('status' => 'error',
+				'message' => 'Could not upload file'));
+	}
+	
+	/**
+	 * Function to crop the uploaded temp image
+	 */
+	public function cropTempImage(){
+		$croppedImage = Input::get("imgUrl");
+		$image = Image::make($croppedImage);
+		$scaledWidth = intval(Input::get('imgW'));
+		$scaledHeight = intval(Input::get('imgH'));
+		$width = intval(Input::get('cropW'));
+		$height = intval(Input::get('cropH'));
+		$x = intval(Input::get('imgX1'));
+		$y = intval(Input::get('imgY1'));
+		$image->resize($scaledWidth,$scaledHeight)->crop($width,$height,$x,$y);
+		$imgPathArr = explode("/",$croppedImage);
+		
+		$image->save(__DIR__.'/../../public/img/content/'.$imgPathArr[count($imgPathArr)-1]);
+		
+		return Response::json(array('status' => 'success',
+				'url' => 'img/content/'.$imgPathArr[count($imgPathArr)-1]));
+	}
+	
+	/**
+	 * Method handling submission after cropping the image
+	 */
 	public function saveContent()
 	{
 		Log::debug('Saving file content');
-		if (Input::file('postImage')->isValid())
-		{
-			$file = Input::file('postImage');
-			$fileName = uniqid();
-			Log::debug('File is valid. Save it as: '.$fileName);
-			Log::debug(__DIR__.'/../../public/img/content/');
-			$file->move(__DIR__.'/../../public/img/content/', $fileName.".png");
-			$post = new Post();
-			$post->post_key = $fileName;
-			$post->title = Input::get("title");
-			$post->post_text = Input::get("postText");
-			$post->user_id = 1;
-			$post->save();
-			$tagNames = Input::get("tags");
-			Log::debug("Tag names: ".implode(",",$tagNames));
-			$tm = new TagManager();
-			$rankCounter = 0;
-			foreach ($tagNames as $tagName) {
-				$rankCounter = $rankCounter+1;
-				Log::debug("Tag name = ".$tagName);
-				$id = $tm->findOrCreateTag($tagName);
-				Log::debug("Tag id: ".$id);
-				$postTagRank = new Posttagrank();
-				$postTagRank->post_id = $post->id;
-				$postTagRank->tag_id = $id;
-				$postTagRank->rank = $rankCounter;
-				$postTagRank->save();
-			}
-			
-		}else{
-			Log::error('File is invalid');
+		$imageUrl = Input::get('imageUrl');
+		$imagePathArr = explode("/",$imageUrl);
+		$fileName = $imagePathArr[count($imagePathArr)-1];
+		Log::debug("Image Url: ".$imageUrl);
+		Log::debug("File name: ".$fileName);
+		$post = new Post();
+		$post->post_key = $fileName;
+		$post->title = Input::get("title");
+		$post->post_text = Input::get("postText");
+		$post->user_id = Auth::id();
+		$post->save();
+		$tagNames = Input::get("tags");
+		Log::debug("Tag names: ".implode(",",$tagNames));
+		$tm = new TagManager();
+		$rankCounter = 0;
+		foreach ($tagNames as $tagName) {
+			$rankCounter = $rankCounter+1;
+			Log::debug("Tag name = ".$tagName);
+			$id = $tm->findOrCreateTag($tagName);
+			Log::debug("Tag id: ".$id);
+			$postTagRank = new Posttagrank();
+			$postTagRank->post_id = $post->id;
+			$postTagRank->tag_id = $id;
+			$postTagRank->rank = $rankCounter;
+			$postTagRank->save();
 		}
-		$data = array("message"=>"Content Saved.");
+		$data = array("message"=>"Post Saved. You may add more posts.");
 		return View::make('includes.decorator')->nest('contentView', 'addContent', $data);
+	}
+	
+	/**
+	 * Function responsible for rendering content on the main page
+	 */
+	public function renderContent($searchStr=NULL){
+		Log::debug("Search str: ".$searchStr);
+		$post=null;
+		if(strpos($searchStr,"tag=")!==false){
+			Log::debug("Tag search");
+			$searchStr = str_replace("tag=", "", $searchStr);
+			$tag = Tag::where("name",$searchStr)->first();
+			//REVISIT - put this thru the getNextPost logic
+			$post = $tag->posts()->first();
+		}else if(strlen($searchStr)!=0){
+			Log::debug("Key search");
+			$post = Post::where('post_key', 'like', $searchStr."%")->first();
+			Log::debug("Post: ".$post);
+		}else {
+			Log::debug("Home page hit.. pull up random post");
+			$post = Post::first();
+			Log::debug("Post: ".$post);
+		}
+		$data = array("post"=>$post);
+		return View::make('includes.decorator')->nest('contentView', 'welcome', $data);
+	}
+	
+	/**
+	 * Get the next page based on certain rules which we will evolve as time goes. For now keep it simple
+	 * REVISIT: THIS FUNCTION NEEDS A LOT MORE THOUGHT and OPTIMIZATION.. getting it going for now
+	 */
+	public function getNextPost($key){
+		$keysArray= array();
+		if(!Session::has('displayedKeys')){
+			Session::put('displayedKeys',array());
+		}
+		$keysArray = Session::get('displayedKeys');
+		$keysArray[$key]='true';//Mark this key as displayed by adding it here
+		Session::put('displayedKeys',$keysArray);
+		//First see if there are other posts related to the same tag
+		$post = Post::where('post_key', '=', $key)->first();
+		$tags = $post->tags()->get();
+		Log::debug("Tags: ".$tags);
+		Log::debug("Session data: ".implode(Session::get('displayedKeys')));
+		
+		$relatedPosts = array();
+		foreach ($tags as $tag)
+		{
+			$posts = $tag->posts()->get();
+			foreach ($posts as $post){
+				array_push($relatedPosts,$post);
+			}
+		}
+		Log::debug("Related Posts: ".implode($relatedPosts));
+		foreach ($keysArray as $key => $value) {
+			Log::debug("Key: $key; Value: $value\n");
+		}
+		//find a post thats not displayed
+		foreach ($relatedPosts as $relPost){
+			$postKey = $relPost->post_key;
+			if(array_key_exists($postKey,$keysArray)){
+				continue;
+			}
+			Log::debug("Found post: ".$relPost);
+			return View::make('postView')->with("post", $relPost);
+		}
+		//If a related post not found, find any other post
+		$postFound = Post::whereNotIn('post_key', array_keys($keysArray))->first();
+		Log::debug("Post found: ".$postFound);
+		if(!$postFound){
+			//Clear the session and return any post
+			Session::put('displayedKeys',array());
+			$postFound = Post::first();
+		}
+		return View::make('postView')->with("post", $postFound);
+	}
+	
+	/**
+	 * Function to retrieve tags for a given postkey for rendering into the right panel
+	 * @param string $key Optional post key to get tags for
+	 */
+	public function getTags($key=NULL){
+		//Going to use this array like a map to ensure uniqueness of keys
+		$tags = array();
+		if($key){
+			Log::debug("Looking for tags for key: ".$key);
+			$post = Post::where("post_key",$key)->first();
+			foreach ($post->tags()->get() as $tag){
+				$tags[$tag->name]=$tag;
+			}
+		}
+		Log::debug("Related tag count: ".count($tags));
+		if(count($tags)<50){
+			Log::debug("Adding more tags to list from related tags");
+			foreach ($tags as $tag){
+				$tagRelations = Tagrelationranks::where("tag_from_id",$tag->id)->get();
+				foreach ($tagRelations as $tagRel){
+					$toTags = $tagRel->toTags()->get();
+					foreach ($toTags as $toTag){
+						$tags[$toTag->name]=$toTag;
+					}
+				}
+			}
+		}
+		Log::debug("Related tag count2: ".count($tags));
+		if(count($tags)<50){
+			Log::debug("Adding more tags to list from system");
+			$generalTags = Tag::take(count($tags)-10)->get();
+			foreach ($generalTags as $genTag){
+				$tags[$genTag->name]=$genTag;
+			}
+		}
+		return View::make('tags')->with("tags", $tags);
 	}
 
 }

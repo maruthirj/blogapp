@@ -2,7 +2,12 @@ $(document).ready(function(){
 	//Register handler for addTag button
 	$("#addTagBtn").click(addTagClick);
 	$("a[id^='tagRemove_']").click(removeTagClick);
-	$("#addTagTxt").googleSuggest(); 
+	$("#addTagTxt").googleSuggest();
+	var cropperOptions = {
+		uploadUrl:'tempImageUpload',
+		cropUrl:'cropTempImage'
+	}
+	var cropperHeader = new Croppic('cropImage',cropperOptions);
 });
 
 /**
@@ -42,4 +47,26 @@ function removeTagClick(){
 	tagName = tagIdSuffix.replace(/_/g,' ');
 	$("#hiddenFieldsDiv input[value='"+tagName+"']").remove();
 	$("#tagLi_"+tagIdSuffix).remove();
+}
+
+/**
+ * Validate image submission form
+ */
+function validateSubmit(){
+	if($("#titleText").val()==""){
+		alert("Post title is required.");
+		return false;
+	}
+	if($("#postText").val()==""){
+		alert("Post text is required.");
+		return false;
+	}
+	if($("#uploadedUrl").val()==""){
+		alert("Please upload image and click the green crop icon before posting.");
+		return false;
+	}
+	if($("#hiddenFieldsDiv input").size()==0){
+		alert("Please add atleast one tag to this post");
+		return false;
+	}
 }
