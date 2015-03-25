@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>SuperEstimate</title>
+	<title>Flikbuk</title>
+	<link rel="icon" href="img/favicon.png" type="image/x-icon"/>
 	<link href="/components/jquery-ui/themes/smoothness/jquery-ui.css" type="text/css" rel="stylesheet"/>
 	<style>
 		@import url(//fonts.googleapis.com/css?family=Lato:700);
@@ -22,8 +23,12 @@
 			margin: 16px 0 0 0;
 		}
 	</style>
-	<script type="text/javascript" src="/components/jquery/jquery.js"></script>
-	<script type="text/javascript" src="/components/jquery-ui/jquery-ui.js"></script>
+	<script src="scripts/js/jquery.ui.autocomplete.js"
+	type="text/javascript"></script>
+<script src="scripts/js/jquery.js" type="text/javascript"></script>
+<script src="scripts/js/jquery-ui-custom.min.js" type="text/javascript"></script>
+<script src="scripts/js/jquery.layout.js" type="text/javascript"></script>
+<script src="scripts/js/grid.locale-en.js" type="text/javascript"></script>
 </head>
 <body>
 	<?php echo $contentView; ?>

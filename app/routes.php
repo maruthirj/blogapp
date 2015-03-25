@@ -20,6 +20,14 @@ Route::get('login', function()
 {
 	return View::make('loginForm');
 });
+
+//route for tag relation
+Route::get('tagRelation',function(){
+	return View::make('includes.decorator')->nest('contentView', 'tagRelationForm');
+});
+//route for searching images from search box
+Route::resource('searchTags', 'ContentController@searchTags');
+Route::resource('createTagsRelations', 'ContentController@createTagsRelations');
 Route::post('login', 'UserController@login');
 Route::get('logout', function()
 {
@@ -46,3 +54,5 @@ Route::post('saveContent', array('before' => 'auth', 'uses' => 'ContentControlle
 Route::get('/getNextPost/{key}', 'ContentController@getNextPost');
 Route::get('/tags/{key?}', 'ContentController@getTags');
 Route::get('/{searchStr?}', 'ContentController@renderContent');
+
+

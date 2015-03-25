@@ -15,9 +15,9 @@ class ContentController extends BaseController {
 				"width":originalImgWidth,
 				"height":originalImgHeight
 		}
-		
+
 		OR
-		
+
 		{
 			"status":"error",
 			"message":"your error message text"
@@ -42,7 +42,7 @@ class ContentController extends BaseController {
 			$fileName = uniqid();
 			Log::debug('File is valid. Save it as: '.$fileName);
 			Log::debug(__DIR__.'/../../public/img/content/tmp/');
-			
+
 			$image = Image::make($file->getRealPath());
 			$height = $image->height();
 			$width = $image->width();
@@ -51,8 +51,8 @@ class ContentController extends BaseController {
 						'message' => 'Minimum image size W x H shoud be 900 x 600'));
 			}
 			$file->move(__DIR__.'/../../public/img/content/tmp/', $fileName.".".$fileExt);
-				
-			return Response::json(array('status' => 'success', 
+
+			return Response::json(array('status' => 'success',
 										'url' => 'img/content/tmp/'.$fileName.".".$fileExt,
 										'width' => $width,
 										'height' => $height));
@@ -60,7 +60,7 @@ class ContentController extends BaseController {
 		return Response::json(array('status' => 'error',
 				'message' => 'Could not upload file'));
 	}
-	
+
 	/**
 	 * Function to crop the uploaded temp image
 	 */
@@ -75,13 +75,13 @@ class ContentController extends BaseController {
 		$y = intval(Input::get('imgY1'));
 		$image->resize($scaledWidth,$scaledHeight)->crop($width,$height,$x,$y);
 		$imgPathArr = explode("/",$croppedImage);
-		
+
 		$image->save(__DIR__.'/../../public/img/content/'.$imgPathArr[count($imgPathArr)-1]);
-		
+
 		return Response::json(array('status' => 'success',
 				'url' => 'img/content/'.$imgPathArr[count($imgPathArr)-1]));
 	}
-	
+
 	/**
 	 * Method handling submission after cropping the image
 	 */
@@ -117,12 +117,14 @@ class ContentController extends BaseController {
 		$data = array("message"=>"Post Saved. You may add more posts.");
 		return View::make('includes.decorator')->nest('contentView', 'addContent', $data);
 	}
-	
+
 	/**
 	 * Function responsible for rendering content on the main page
 	 */
 	public function renderContent($searchStr=NULL){
 		Log::debug("Search str: ".$searchStr);
+		session_start();
+		unset($_SESSION['displayedKeys']);
 		$post=null;
 		if(strpos($searchStr,"tag=")!==false){
 			Log::debug("Tag search");
@@ -142,25 +144,30 @@ class ContentController extends BaseController {
 		$data = array("post"=>$post);
 		return View::make('includes.decorator')->nest('contentView', 'welcome', $data);
 	}
-	
+
 	/**
 	 * Get the next page based on certain rules which we will evolve as time goes. For now keep it simple
 	 * REVISIT: THIS FUNCTION NEEDS A LOT MORE THOUGHT and OPTIMIZATION.. getting it going for now
 	 */
 	public function getNextPost($key){
 		$keysArray= array();
-		if(!Session::has('displayedKeys')){
-			Session::put('displayedKeys',array());
+		session_start();
+		if(!isset( $_SESSION['displayedKeys'] )){
+		   $_SESSION['displayedKeys'] = array();
 		}
-		$keysArray = Session::get('displayedKeys');
-		$keysArray[$key]='true';//Mark this key as displayed by adding it here
-		Session::put('displayedKeys',$keysArray);
+		$keysArray = $_SESSION['displayedKeys'];
+		//echo "sesion array".implode($keysArray)."...<br/>";
+		//echo "key ".$key."<br/>";
+		$keysArray[$key]='true';						//Mark this key as displayed by adding it here
+		//echo "local array".implode($keysArray)."...<br/>";
+		$_SESSION['displayedKeys'] = $keysArray;
+
 		//First see if there are other posts related to the same tag
 		$post = Post::where('post_key', '=', $key)->first();
 		$tags = $post->tags()->get();
 		Log::debug("Tags: ".$tags);
-		Log::debug("Session data: ".implode(Session::get('displayedKeys')));
-		
+		//Log::debug("Session data: ".implode(Session::get('displayedKeys')));
+
 		$relatedPosts = array();
 		foreach ($tags as $tag)
 		{
@@ -169,10 +176,7 @@ class ContentController extends BaseController {
 				array_push($relatedPosts,$post);
 			}
 		}
-		Log::debug("Related Posts: ".implode($relatedPosts));
-		foreach ($keysArray as $key => $value) {
-			Log::debug("Key: $key; Value: $value\n");
-		}
+
 		//find a post thats not displayed
 		foreach ($relatedPosts as $relPost){
 			$postKey = $relPost->post_key;
@@ -186,13 +190,14 @@ class ContentController extends BaseController {
 		$postFound = Post::whereNotIn('post_key', array_keys($keysArray))->first();
 		Log::debug("Post found: ".$postFound);
 		if(!$postFound){
+			echo "post not found";
 			//Clear the session and return any post
 			Session::put('displayedKeys',array());
 			$postFound = Post::first();
 		}
 		return View::make('postView')->with("post", $postFound);
 	}
-	
+
 	/**
 	 * Function to retrieve tags for a given postkey for rendering into the right panel
 	 * @param string $key Optional post key to get tags for
@@ -230,5 +235,68 @@ class ContentController extends BaseController {
 		}
 		return View::make('tags')->with("tags", $tags);
 	}
-
+	public function getTagRelations($key=NULL){
+		$tags = Tag::all();
+		return View::make('tagRelationForm')->with("tags", $tags);
+		
+	}
+	
+	public function searchTags($key=NULL){
+	    $term = Input::get('term');
+		$results = Tag::whereRaw('name like ?',array('%'.$term.'%'))->get();
+		$response = array();
+		foreach($results as $value){
+			$array = array();
+			$array = array_add($array,"label",$value->name);
+			$array = array_add($array,"id",$value->id);
+			array_push($response,$array);
+		}
+		return Response::json($response);
+		
+	}
+	public function saveTagsRelations($key=NULL){
+		$tagMapping = Input::get('tagMapping');
+		$arr = explode("],",$tagMapping);
+		foreach ($arr as $value) {
+		   $fromId = explode(":",$value)[0];
+		   if(str_contains($fromId, "{")){
+			  $fromId = explode("{",$fromId)[1];
+		   }
+		   $fromId = explode('"',$fromId)[1];
+		   $toIdArr = explode(",",explode(":",$value)[1]);
+		   foreach ($toIdArr as $value) {
+		       $toId = $value;
+			   if(str_contains($toId, "[")){
+				  $toId = explode("[",$toId)[1];
+			   }
+			   if(str_contains($toId, "]")){
+				  $toId = explode("]",$toId)[0];
+			   }
+			   $tagrelationranks = new Tagrelationranks();
+			   $tagrelationranks -> tag_from_id = $fromId;
+			   $tagrelationranks -> tag_to_id = $toId;
+			   $tagrelationranks -> rank = 0;
+			   $tagrelationranks->save();
+		   }
+		}
+		return View::make('includes.decorator')->nest('contentView', 'tagRelationForm');
+	}
+	public function createTagsRelations($key=NULL){
+		$tagIds = Input::get('tagIds');
+		$arr = explode(",",$tagIds);
+		echo "Test".count($arr);
+		for($i=0;$i<count($arr); $i++){
+			$fromId = $arr[$i];
+			foreach ($arr as $value) {
+			  if($value != $fromId){
+				$tagrelationranks = new Tagrelationranks();
+			    $tagrelationranks -> tag_from_id = $fromId;
+			    $tagrelationranks -> tag_to_id = $value;
+			    $tagrelationranks -> rank = 0;
+			    $tagrelationranks->save();
+			  }
+			}
+		}
+		//return View::make('includes.decorator')->nest('contentView', 'tagRelationForm');
+	}
 }

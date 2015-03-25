@@ -9,7 +9,7 @@ if(isset($errors)){
 <?php echo Form::open(array('url' => '/login', 'class' => 'box login')); ?>
 	<fieldset class="boxBody">
 		<label>User Email</label> <input type="text" tabindex="1"
-			name="email" required><br> 
+			name="email" required><br>
 		<label> Password
 		</label> <input type="password" name="password" tabindex="2" required>
 	</fieldset>

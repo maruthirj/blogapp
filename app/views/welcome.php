@@ -24,14 +24,22 @@
 			top: 0px;
 			position: absolute;
 		}
-		
+
 
 </style>
-	<form action="">
-		<input type="text" name="search"/><input type="submit" value="Search"/>
+<script type="text/javascript">
+function searchTag(){
+   var form = document.getElementById("form");
+   form.action = "/tag="+document.getElementById("search").value;
+   form.submit();
+   return false;
+}
+</script>
+	<form action="" name="form" id="form">
+		<input type="text" name="search" id="search"/><input type="button" value="Search" onclick="searchTag()"/>
 	</form>
 	<div class="left">
-		
+
 	</div>
 	<div class="imagePanel">
 		<div id="flipbook">
@@ -42,5 +50,5 @@
 		<button id="copy-button">Copy Link</button>
 	</div>
 	  <div class="tags">
-		
+
 	</div>
