@@ -13,7 +13,7 @@
 <select name="tags" id="tags" multiple style="width:36%;margin-left:2%;">
 </select>
 <input type="submit" value="Submit" onclick="saveTagRelations()">
-// This script is used for autocomplete tags.
+<!--This script is used for autocomplete tags. -->
 <script type="text/javascript">
  $('#auto').autocomplete({
 	source: 'searchTags',
@@ -23,11 +23,13 @@
 		
 	}
 });
+<!--This is the function to save add the selcted tags into the list -->
 function add(){
 		var newOption = "<option value='"+$("#tagId").val()+"'>"+$("#auto").val()+"</option>"; 
 		$("#tags").append(newOption);
 		$('#auto').val("");
 }
+<!--this is function to save the list of the related tags into the database -->
 function saveTagRelations(){
 	var optVals=[];
 	$('#tags option').each(function(){
