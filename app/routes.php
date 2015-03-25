@@ -10,11 +10,12 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-
+//route for signup
 Route::get('signup', function()
 {
 	return View::make('signupForm');
 });
+//signup controller
 Route::post('signup', 'UserController@signup');
 Route::get('login', function()
 {
