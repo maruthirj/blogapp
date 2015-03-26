@@ -55,7 +55,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => '127.0.0.1',
-			'database'  => 'blogapp',
+			'database'  => 'flikbuk',
 			'username'  => 'root',
 			'password'  => 'admin123',
 			'charset'   => 'utf8',
