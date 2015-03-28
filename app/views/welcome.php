@@ -58,8 +58,8 @@ function searchTag(){
 			<?php include 'postView.php'?>
 			</div>
 		</div>
-		<div id="fb_share" class="fb-like" data-href="http://www.flikbuk.com/<?php echo $post->post_key?>" data-layout="standard" data-action="like" data-show-faces="true" 
-	       data-share="true"></div>
+		<div class="fb-like" data-href="" data-layout="standard" data-action="like" data-show-faces="true" 
+   data-share="true"></div>
 		 <br/><br/>
 		 
 		<button id="copy-button">Copy Link</button>
