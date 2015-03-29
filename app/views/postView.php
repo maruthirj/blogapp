@@ -11,9 +11,8 @@
 <?php echo $post->post_text ?>
 <div id="fb-root"></div>
 <script>
-$('.fb-like').attr('data-href','http://www.flikbuk.com/<?php echo $post->post_key?>');
+FB.XFBML.parse();
 </script>
-
 </div>
 <div>
 <input type="hidden" value="http://<?php echo $_SERVER['HTTP_HOST']?>/<?php echo $post->post_key?>" name="postLink" id="postLinkInput"/>
