@@ -58,8 +58,7 @@ function searchTag(){
 			<?php include 'postView.php'?>
 			</div>
 		</div>
-		<div class="fb-like" data-href="" data-layout="standard" data-action="like" data-show-faces="true" 
-   data-share="true"></div>
+		<div class="fb-share-button" data-href="" data-layout="button"></div>
 		 <br/><br/>
 		 
 		<button id="copy-button">Copy Link</button>
