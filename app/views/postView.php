@@ -10,8 +10,10 @@
 <div class="postText">
 <?php echo $post->post_text ?>
 <div id="fb-root"></div>
+<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
 <script>
 FB.XFBML.parse();
+twttr.widgets.load();
 </script>
 </div>
 <div>

@@ -43,7 +43,18 @@ function searchTag(){
   js = d.createElement(s); js.id = id;
   js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.3";
   fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+}(document, 'script', 'facebook-jssdk'));
+</script>
+<script>
+window.twttr=(function(d,s,id){
+	var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};
+	if(d.getElementById(id))return;js=d.createElement(s);
+	js.id=id;
+	js.src="https://platform.twitter.com/widgets.js";
+	fjs.parentNode.insertBefore(js,fjs);t._e=[];
+	t.ready=function(f){t._e.push(f);};return t;
+}(document,"script","twitter-wjs"));
+</script>
 
 	<form action="" name="form" id="form">
 		<input type="text" name="search" id="search"/><input type="button" value="Search" onclick="searchTag()"/>
@@ -59,6 +70,7 @@ function searchTag(){
 			</div>
 		</div>
 		<div class="fb-share-button" data-href="" data-layout="button"></div>
+		&nbsp;<a class="twitter-share-button" data-related="twitterdev" data-size="large" data-count="none">Tweet
 		 <br/><br/>
 		 
 		<button id="copy-button">Copy Link</button>
