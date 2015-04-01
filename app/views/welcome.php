@@ -70,7 +70,7 @@ window.twttr=(function(d,s,id){
 			</div>
 		</div>
 		<div class="fb-share-button" data-href="" data-layout="button"></div>
-		&nbsp;<a class="twitter-share-button" data-related="twitterdev" data-size="large" data-count="none">Tweet
+		&nbsp;<a class="twitter-share-button" data-url="" data-related="twitterdev" data-size="large" data-count="none">Tweet
 		 <br/><br/>
 		 
 		<button id="copy-button">Copy Link</button>

@@ -13,6 +13,7 @@
 <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
 <script>
 FB.XFBML.parse();
+//$(".twitter-share-button").attr('data-url',document.location.href);
 twttr.widgets.load();
 </script>
 </div>
