@@ -35,8 +35,9 @@ function searchTag(){
    return false;
 }
 </script>
-<div id="fb-root"></div>
+
 <script>
+//this fuction deals with facebook share
 (function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
@@ -44,8 +45,8 @@ function searchTag(){
   js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.3";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
-</script>
-<script>
+
+//this function deals with twitter share
 window.twttr=(function(d,s,id){
 	var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};
 	if(d.getElementById(id))return;js=d.createElement(s);
@@ -56,6 +57,7 @@ window.twttr=(function(d,s,id){
 }(document,"script","twitter-wjs"));
 </script>
 
+<div id="fb-root"></div>
 	<form action="" name="form" id="form">
 		<input type="text" name="search" id="search"/><input type="button" value="Search" onclick="searchTag()"/>
 	</form>
@@ -69,13 +71,14 @@ window.twttr=(function(d,s,id){
 			<?php include 'postView.php'?>
 			</div>
 		</div>
+		<!-- Facebook Share Button below images-->
 		<div class="fb-share-button" data-href="" data-layout="button"></div>
-		&nbsp;<a class="twitter-share-button" data-url="" data-related="twitterdev" data-size="large" data-count="none">Tweet
+		<!-- Twitter Button below images-->
+		<a class="twitter-share-button" data-url="" data-related="twitterdev" data-size="large" data-count="none"/>Tweet</a>
 		 <br/><br/>
-		 
+		 <!--  Button to copy the image link below images-->
 		<button id="copy-button">Copy Link</button>
 		<br/>
 	</div>
-	  <div class="tags">
-
-	</div>
+	<div class="tags"></div>
+	
