@@ -55,5 +55,6 @@ Route::post('saveContent', array('before' => 'auth', 'uses' => 'ContentControlle
 Route::get('/getNextPost/{key}', 'ContentController@getNextPost');
 Route::get('/tags/{key?}', 'ContentController@getTags');
 Route::get('/{searchStr?}', 'ContentController@renderContent');
+Route::post('saveRating', 'ContentController@saveRating');
 
 

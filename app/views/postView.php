@@ -7,6 +7,7 @@
 <div class="postImage" id="postImage">
 <img src="/img/content/<?php echo $post->post_key?>"/>
 </div>
+<input type="hidden" id="rating" value="<?php echo $post->overall_rating ?>"/>
 <div class="postText">
 <?php echo $post->post_text ?>
 <div id="fb-root"></div>
@@ -15,8 +16,11 @@
 FB.XFBML.parse();
 //$(".twitter-share-button").attr('data-url',document.location.href);
 twttr.widgets.load();
+var rating = document.getElementById("rating").value;
+fillImg(rating);
 </script>
 </div>
 <div>
 <input type="hidden" value="http://<?php echo $_SERVER['HTTP_HOST']?>/<?php echo $post->post_key?>" name="postLink" id="postLinkInput"/>
 </div>
+

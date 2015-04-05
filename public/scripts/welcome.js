@@ -28,6 +28,8 @@ $(document).ready(function(){
 function addNewPages(){
 	//REVISIT: make this add pages only when fliking forward and the user is towards the end of the pages list
 	//Find the last post and load next few posts
+	document.getElementById("ratingVal").value = 0;
+	normalImg(5);
 	var pageCollection = $("input[name='postKey']");
 	if(pageCollection.size()>0){
 		var lastPostInput = pageCollection.get(pageCollection.size()-1);

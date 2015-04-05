@@ -299,4 +299,20 @@ class ContentController extends BaseController {
 		}
 		//return View::make('includes.decorator')->nest('contentView', 'tagRelationForm');
 	}
+	public function saveRating()
+	{
+		$rating = Input::get('rating');
+		$postId = Input::get('postId');
+		$post = Post::where("id",$postId)->get();
+		$overallRating = $post[0]->overall_rating;
+		if($overallRating == null){
+			$overallRating = $rating;
+		}else{
+			$overallRating = ($overallRating + $rating)/2;
+		}
+		echo $overallRating;
+		$post[0]->overall_rating = $overallRating;
+		$post[0]->save();
+		//return Response::json();;
+	}
 }
