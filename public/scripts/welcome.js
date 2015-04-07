@@ -10,6 +10,7 @@ $(document).ready(function(){
 
 	});
 	addNewPages();
+	
 	$("#flipbook").bind("turned", function(event, page, view) {
 		//Update the page title and url
 		var key = $("div.p"+page+" input[name='postKeyUrl']").val();

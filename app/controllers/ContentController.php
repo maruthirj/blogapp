@@ -299,11 +299,18 @@ class ContentController extends BaseController {
 		}
 		//return View::make('includes.decorator')->nest('contentView', 'tagRelationForm');
 	}
-	public function saveRating()
-	{
+	
+	// this saves the ratings in the database and calculate the overall rating of each image
+	public function saveRating(){
 		$rating = Input::get('rating');
 		$postId = Input::get('postId');
 		$post = Post::where("id",$postId)->get();
+		echo $post[0]->post_key;
+		if(isset($_COOKIE[$post[0]->id])) {
+			echo "cookie found";
+			return;
+		}
+		echo "cookie not found";
 		$overallRating = $post[0]->overall_rating;
 		if($overallRating == null){
 			$overallRating = $rating;
@@ -311,8 +318,11 @@ class ContentController extends BaseController {
 			$overallRating = ($overallRating + $rating)/2;
 		}
 		echo $overallRating;
+		setcookie($post[0]->id,$rating);
 		$post[0]->overall_rating = $overallRating;
 		$post[0]->save();
+		
 		//return Response::json();;
 	}
 }
+?>
