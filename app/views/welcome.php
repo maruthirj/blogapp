@@ -28,21 +28,25 @@
 
 </style>
 <div class="container">
-<input type="hidden" id="ratingVal" value="0"/>
+<div class="row">
+<div class="col-md-4"><input type="hidden" id="ratingVal" value="0"/></div>
 <div id="fb-root"></div>
+<div class="col-md-4">
 	<form action="" name="form" id="form">
 		<input type="text" name="search" id="search"/><input type="button" value="Search" onclick="searchTag()"/>
 	</form>
+	</div>
 	<div class="left">
 
 	</div>
-	
+	<div class="col-md-4">
 	<div class="imagePanel">
 		<div id="flipbook">
 			<div  style="background: white;">
 			<?php include 'postView.php'?>
 			</div>
 		</div>
+		
 		<table	id="ratingTable">
 		  <tr>
 		    <td><img id="img1" src="img/star_empty.png" onmouseover="fillImg(1)" onmouseout="normalImg(1)" 
@@ -68,7 +72,12 @@
 		<button id="copy-button">Copy Link</button>
 		<br/>
 	</div>
+	</div>
+	<div class="col-md-4">
 	<div class="tags"></div>
+	</div>
+	 </div>
+    </div>
 <script type="text/javascript">
 function searchTag(){
    var form = document.getElementById("form");
