@@ -23,6 +23,10 @@
 			margin: 16px 0 0 0;
 		}
 	</style>
+	<link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap/bootstrap-theme.min.css">
+	<script src="scripts/js/jquery.min.js"></script>
+	<script src="scripts/js/bootstrap/bootstrap.min.js"></script>
 	<script src="scripts/js/jquery.ui.autocomplete.js"
 	type="text/javascript"></script>
 <script src="scripts/js/jquery.js" type="text/javascript"></script>
@@ -31,6 +35,7 @@
 <script src="scripts/js/grid.locale-en.js" type="text/javascript"></script>
 </head>
 <body>
+<img src="img/logo.png" width="175px;" height="70px;"/>
 	<?php echo $contentView; ?>
 </body>
 </html>

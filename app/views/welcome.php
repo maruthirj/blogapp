@@ -27,26 +27,18 @@
 
 
 </style>
-<div class="container">
-<div class="row">
-<div class="col-md-4"><input type="hidden" id="ratingVal" value="0"/></div>
+<input type="hidden" id="ratingVal" value="0"/>
 <div id="fb-root"></div>
-<div class="col-md-4">
-	<form action="" name="form" id="form">
-		<input type="text" name="search" id="search"/><input type="button" value="Search" onclick="searchTag()"/>
+	<form action="" name="form" id="form" style="margin-left:226px;margin-top:-60px;">
+		<input type="text" name="search" id="search" size="50"/>
+		<input type="button" value="Search" onclick="searchTag()"/>
 	</form>
-	</div>
-	<div class="left">
-
-	</div>
-	<div class="col-md-4">
-	<div class="imagePanel">
+	<div class="imagePanel" style="margin-top:60px;">
 		<div id="flipbook">
 			<div  style="background: white;">
 			<?php include 'postView.php'?>
 			</div>
 		</div>
-		
 		<table	id="ratingTable">
 		  <tr>
 		    <td><img id="img1" src="img/star_empty.png" onmouseover="fillImg(1)" onmouseout="normalImg(1)" 
@@ -62,22 +54,23 @@
 		  </tr>
 		</table>
 		<br/>
+		<table>
+		<tr><td>
 		<!-- Facebook Share Button below images-->
 		<div class="fb-share-button" data-href="" data-layout="button"></div>
+		</td>
+		<td>
 		<!-- Twitter Button below images-->
-		<a class="twitter-share-button" data-url="" data-related="twitterdev" data-size="large" data-count="none"/>Tweet</a>
-		
-		 <br/><br/>
-		 <!--  Button to copy the image link below images-->
-		<button id="copy-button">Copy Link</button>
+		&nbsp;&nbsp;<a class="twitter-share-button" data-url="" data-related="twitterdev" data-size="large" data-count="none"/>Tweet</a>
+		</td>
+		<td>
+		<!--  Button to copy the image link below images-->
+		&nbsp;&nbsp;<button id="copy-button">Copy Link</button>
+		</td></tr>
+		</table>
 		<br/>
 	</div>
-	</div>
-	<div class="col-md-4">
 	<div class="tags"></div>
-	</div>
-	 </div>
-    </div>
 <script type="text/javascript">
 function searchTag(){
    var form = document.getElementById("form");
