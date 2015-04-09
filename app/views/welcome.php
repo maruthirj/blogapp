@@ -27,6 +27,7 @@
 
 
 </style>
+<div class="container">
 <input type="hidden" id="ratingVal" value="0"/>
 <div id="fb-root"></div>
 	<form action="" name="form" id="form">
