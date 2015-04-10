@@ -6,40 +6,52 @@
 <style>
 		@import url(//fonts.googleapis.com/css?family=Lato:700);
 
-		.left {
-			width: 15%;
-			left: 0px;
-			top: 0px;
-			position: absolute;
+		body {
+			margin:0;
+			font-family:'Lato', sans-serif;
+			color: #999;
 		}
-		.imagePanel {
-			width: 70%;
-			left: 15%;
-			top: 0px;
-			position: absolute;
+
+		a, a:visited {
+			text-decoration:none;
 		}
-		.tags{
-			width: 15%;
-			left: 85%;
-			top: 0px;
-			position: absolute;
+
+		h1 {
+			font-size: 32px;
+			margin: 16px 0 0 0;
 		}
 
 
 </style>
-<input type="hidden" id="ratingVal" value="0"/>
-<div id="fb-root"></div>
-	<form action="" name="form" id="form" style="margin-left:226px;margin-top:-60px;">
+	<div class="container">
+	     <div class="row">
+	<!-- 1. Search -->	 
+	<div class="col-md-4">
+	<form action="" name="form" id="form" style="margin-left:-252px;margin-top:6px;">
 		<input type="text" name="search" id="search" size="50"/>
 		<input type="button" value="Search" onclick="searchTag()"/>
 	</form>
-	<div class="imagePanel" style="margin-top:60px;">
+	</div>
+	</div>
+	<!-- End Search -->
+	<div class="row">
+	<!-- 2. Image Pannel -->
+	<div class="col-md-4">
+	<div class="imagePanel" style="margin-top:10px; margin-left:-252px;">
 		<div id="flipbook">
 			<div  style="background: white;">
 			<?php include 'postView.php'?>
 			</div>
 		</div>
-		<table	id="ratingTable">
+		</div>
+	<!-- End image Pannel -->
+	</div>
+	</div>
+	
+	<div class="row" style="margin-left:-266px;">
+    <div class="col-md-4">
+	<input type="hidden" id="ratingVal" value="0"/>
+		<div id="ratingTable">
 		  <tr>
 		    <td><img id="img1" src="img/star_empty.png" onmouseover="fillImg(1)" onmouseout="normalImg(1)" 
 			onClick="giveRating(1)" height="42" width="42"></td>
@@ -52,25 +64,31 @@
 			<td><img id="img5" src="img/star_empty.png" onmouseover="fillImg(5)" onmouseout="normalImg(5)" 
 			onClick="giveRating(5)" height="42" width="42"></td>
 		  </tr>
-		</table>
-		<br/>
-		<table>
-		<tr><td>
+		</div>
+		</div>
+		</div>
+		<div class="row">
+		<div class="col-md-4" style="margin-left:-249px;">
 		<!-- Facebook Share Button below images-->
 		<div class="fb-share-button" data-href="" data-layout="button"></div>
-		</td>
-		<td>
+		
 		<!-- Twitter Button below images-->
-		&nbsp;&nbsp;<a class="twitter-share-button" data-url="" data-related="twitterdev" data-size="large" data-count="none"/>Tweet</a>
-		</td>
-		<td>
+		<a class="twitter-share-button" data-url="" data-related="twitterdev" data-size="large" data-count="none"/>Tweet</a>
+		
 		<!--  Button to copy the image link below images-->
-		&nbsp;&nbsp;<button id="copy-button">Copy Link</button>
-		</td></tr>
-		</table>
-		<br/>
+		<button id="copy-button">Copy Link</button>
+		</div>
+		
+		<!-- 3. Tags -->
+		<div class="row">
+		<div class="col-md-4">	
+		<div class="tags"></div>
+		</div>
+		<!-- End of Tags -->
+		</div>
+		</div>
 	</div>
-	<div class="tags"></div>
+	
 <script type="text/javascript">
 function searchTag(){
    var form = document.getElementById("form");

@@ -27,16 +27,20 @@
 	<link rel="stylesheet" href="css/bootstrap/bootstrap-theme.min.css">
 	<script src="scripts/js/jquery.min.js"></script>
 	<script src="scripts/js/bootstrap/bootstrap.min.js"></script>
-	<script src="scripts/js/jquery.ui.autocomplete.js"
-	type="text/javascript"></script>
-<script src="scripts/js/jquery.js" type="text/javascript"></script>
-<script src="scripts/js/jquery-ui-custom.min.js" type="text/javascript"></script>
-<script src="scripts/js/jquery.layout.js" type="text/javascript"></script>
-<script src="scripts/js/grid.locale-en.js" type="text/javascript"></script>
+	<script src="scripts/js/jquery.ui.autocomplete.js" type="text/javascript"></script>
+	
+	<script src="scripts/js/jquery.js" type="text/javascript"></script>
+	<script src="scripts/js/jquery-ui-custom.min.js" type="text/javascript"></script>
+	<script src="scripts/js/jquery.layout.js" type="text/javascript"></script>
+	<script src="scripts/js/grid.locale-en.js" type="text/javascript"></script>
 </head>
 <body>
-<img src="img/logo.png" width="175px;" height="70px;"/>
+ <div class="row">
+<div class="col-md-4"><img src="img/logo.png" width="175px;" height="70px;"/></div>
+	<div class="col-md-4">
 	<?php echo $contentView; ?>
+	</div>
+	</div>
 </body>
 </html>
 
