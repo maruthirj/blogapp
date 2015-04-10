@@ -27,7 +27,7 @@
 	     <div class="row">
 	<!-- 1. Search -->	 
 	<div class="col-md-4">
-	<form action="" name="form" id="form" style="margin-left:-212px;margin-top:6px;">
+	<form action="" name="form" id="form" style="margin-left:-140px;margin-top:6px;">
 		<input type="text" name="search" id="search" size="50"/>
 		<input type="button" value="Search" onclick="searchTag()"/>
 	</form>
@@ -37,7 +37,7 @@
 	<div class="row">
 	<!-- 2. Image Pannel -->
 	<div class="col-md-4">
-	<div class="imagePanel" style="margin-top:10px; margin-left:-212px;">
+	<div class="imagePanel" style="margin-top:10px; margin-left:-140px;">
 		<div id="flipbook">
 			<div  style="background: white;">
 			<?php include 'postView.php'?>
@@ -48,7 +48,7 @@
 	</div>
 	</div>
 	
-	<div class="row" style="margin-left:-212px;">
+	<div class="row" style="margin-left:-140px;">
     <div class="col-md-4">
 	<input type="hidden" id="ratingVal" value="0"/>
 		<div id="ratingTable">
@@ -68,7 +68,7 @@
 		</div>
 		</div>
 		<div class="row">
-		<div class="col-md-4" style="margin-left:-212px;">
+		<div class="col-md-4" style="margin-left:-140px;">
 		<!-- Facebook Share Button below images-->
 		<div class="fb-share-button" data-href="" data-layout="button"></div>
 		
