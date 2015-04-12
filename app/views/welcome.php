@@ -27,30 +27,40 @@
 	     <div class="row">
 	<!-- 1. Search -->	 
 	<div class="col-md-4">
-	<form action="" name="form" id="form" style="margin-left:-140px;margin-top:6px;">
-		<input type="text" name="search" id="search" size="50"/>
-		<input type="button" value="Search" onclick="searchTag()"/>
+	<form action="" name="form" id="form" style="margin-left:0px;margin-top:10px;">
+		<input type="text" name="search" id="search" size="50"/></div>
+		<div class="col-md-4"><input type="button" value="Search" onclick="searchTag()" style="margin-left:0px;margin-top:10px;"/></div>
 	</form>
 	</div>
 	</div>
 	<!-- End Search -->
-	<div class="row">
-	<!-- 2. Image Pannel -->
+	</div>
+	</div>
+
+	<div class="container">
+	     <div class="row">
+		 <!-- 2. Image Pannel -->
 	<div class="col-md-4">
-	<div class="imagePanel" style="margin-top:10px; margin-left:-140px;">
+	<div class="imagePanel" style="margin-top:40px; margin-left:0px;">
 		<div id="flipbook">
 			<div  style="background: white;">
 			<?php include 'postView.php'?>
-			</div>
 		</div>
 		</div>
 	<!-- End image Pannel -->
 	</div>
 	</div>
-	
-	<div class="row" style="margin-left:-140px;">
-    <div class="col-md-4">
-	<input type="hidden" id="ratingVal" value="0"/>
+	<!-- Tags -->
+	<div class="tags"></div>
+		<!-- End of Tags -->
+	</div>
+	</div>
+	<!-- Rating, facebook, twitter and copy -->
+	<div class="container">
+	<div class="row">
+	<div class="col-md-4">
+		<div class="row" style="margin-left:0px;">
+		<input type="hidden" id="ratingVal" value="0"/>
 		<div id="ratingTable">
 		  <tr>
 		    <td><img id="img1" src="img/star_empty.png" onmouseover="fillImg(1)" onmouseout="normalImg(1)" 
@@ -67,8 +77,8 @@
 		</div>
 		</div>
 		</div>
-		<div class="row">
-		<div class="col-md-4" style="margin-left:-140px;">
+		
+		<div class="col-md-4" style="margin-left:0px;">
 		<!-- Facebook Share Button below images-->
 		<div class="fb-share-button" data-href="" data-layout="button"></div>
 		
@@ -78,17 +88,9 @@
 		<!--  Button to copy the image link below images-->
 		<button id="copy-button">Copy Link</button>
 		</div>
-		
-		<!-- 3. Tags -->
-		<div class="row">
-		<div class="col-md-4">	
-		<div class="tags"></div>
-		</div>
-		<!-- End of Tags -->
 		</div>
 		</div>
-	</div>
-	
+	<!-- End Of - Rating, facebook, twitter and copy -->
 <script type="text/javascript">
 function searchTag(){
    var form = document.getElementById("form");

@@ -36,9 +36,8 @@
 </head>
 <body>
  <div class="row">
-<div class="col-md-4"><img src="img/logo.png" width="175px;" height="70px;"/></div>
-	<div class="col-md-4">
-	<?php echo $contentView; ?>
+<div class="col-md-4" style="width:170px"><img src="img/logo.png" width="175px;" height="70px;"/></div>
+	<div class="col-md-4"><?php echo $contentView; ?>
 	</div>
 	</div>
 </body>
