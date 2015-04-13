@@ -22,6 +22,10 @@
 			font-size: 32px;
 			margin: 16px 0 0 0;
 		}
+		.container-full {
+		  margin: 0 auto;
+		  width: 100%;
+		}
 	</style>
 	<link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
 	<link rel="stylesheet" href="css/bootstrap/bootstrap-theme.min.css">
@@ -39,7 +43,7 @@
 	
 </head>
 <body>
-<div class="container">
+<div class="container-full">
 <?php echo $contentView; ?>
 </div>
 </body>
