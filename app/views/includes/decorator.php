@@ -36,10 +36,8 @@
 </head>
 <body>
 <div class="container">
-	     <div class="row">
-<div class="col-md-2"><img src="img/logo.png" width="162px;" height="68px;"/></div>
 <?php echo $contentView; ?>
-
+</div>
 </body>
 </html>
 
