@@ -14,7 +14,7 @@
 <div class="row">
 	 <div class="col-md-2"> 
 	 </div>
-	<div class="imagePanel col-md-7">
+	<div class="imagePanel col-md-8">
 		<div id="flipbook">
 			<div  style="background: white;">
 				<?php include 'postView.php'?>
@@ -22,7 +22,7 @@
 		</div>
 	</div>
 	<!-- Tags -->
-	<div class="col-md-3">
+	<div class="col-md-2">
 		<div class="tags">
 			<!-- End of Tags -->
 		</div>
