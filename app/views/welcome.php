@@ -1,65 +1,41 @@
+<head>
 <script type="text/javascript" src="/components/jquery/jquery.js"></script>
 <script type="text/javascript" src="/components/turn/turn.js"></script>
 <script type="text/javascript" src="/components/zeroclipboard/ZeroClipboard.js"></script>
 <script type="text/javascript" src="/scripts/welcome.js"></script>
+</head>
 
-<style>
-		@import url(//fonts.googleapis.com/css?family=Lato:700);
-
-		body {
-			margin:0;
-			font-family:'Lato', sans-serif;
-			color: #999;
-		}
-
-		a, a:visited {
-			text-decoration:none;
-		}
-
-		h1 {
-			font-size: 32px;
-			margin: 16px 0 0 0;
-		}
-
-
-</style>
-	<div class="container">
-	     <div class="row">
 	<!-- 1. Search -->	 
-	<div class="col-md-4">
+	<div class="col-md-5">
 	<form action="" name="form" id="form" style="margin-left:0px;margin-top:10px;">
-		<input type="text" name="search" id="search" size="50"/></div>
-		<div class="col-md-4"><input type="button" value="Search" onclick="searchTag()" style="margin-left:0px;margin-top:10px;"/></div>
+		<input type="text" name="search" id="search" size="50"/>
+		<input type="button" value="Search" onclick="searchTag()" style="margin-left:0px;margin-top:10px;"/>
 	</form>
 	</div>
+	
 	</div>
 	<!-- End Search -->
-	</div>
-	</div>
-
-	<div class="container">
 	     <div class="row">
-		 <!-- 2. Image Pannel -->
-	<div class="col-md-4">
-	<div class="imagePanel" style="margin-top:40px; margin-left:0px;">
+		 <div class="col-md-3> 
+		 </div>
+	<div class="col-md-2> 
+	<div class="imagePanel" />
 		<div id="flipbook">
 			<div  style="background: white;">
 			<?php include 'postView.php'?>
 		</div>
 		</div>
+		</div>
 	<!-- End image Pannel -->
-	</div>
-	</div>
 	<!-- Tags -->
+	<div class="col-md-4">
 	<div class="tags"></div>
 		<!-- End of Tags -->
 	</div>
 	</div>
 	<!-- Rating, facebook, twitter and copy -->
-	<div class="container">
 	<div class="row">
-	<div class="col-md-4">
-		<div class="row" style="margin-left:0px;">
+	<div class="col-md-12">
 		<input type="hidden" id="ratingVal" value="0"/>
 		<div id="ratingTable">
 		  <tr>
@@ -75,10 +51,9 @@
 			onClick="giveRating(5)" height="42" width="42"></td>
 		  </tr>
 		</div>
-		</div>
-		</div>
 		
-		<div class="col-md-4" style="margin-left:0px;">
+		
+		
 		<!-- Facebook Share Button below images-->
 		<div class="fb-share-button" data-href="" data-layout="button"></div>
 		

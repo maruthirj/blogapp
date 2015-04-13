@@ -35,11 +35,11 @@
 	<script src="scripts/js/grid.locale-en.js" type="text/javascript"></script>
 </head>
 <body>
- <div class="row">
-<div class="col-md-4" style="width:170px"><img src="img/logo.png" width="175px;" height="70px;"/></div>
-	<div class="col-md-4"><?php echo $contentView; ?>
-	</div>
-	</div>
+<div class="container">
+	     <div class="row">
+<div class="col-md-2"><img src="img/logo.png" width="162px;" height="68px;"/></div>
+<?php echo $contentView; ?>
+
 </body>
 </html>
 
