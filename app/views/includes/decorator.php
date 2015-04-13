@@ -33,6 +33,10 @@
 	<script src="scripts/js/jquery-ui-custom.min.js" type="text/javascript"></script>
 	<script src="scripts/js/jquery.layout.js" type="text/javascript"></script>
 	<script src="scripts/js/grid.locale-en.js" type="text/javascript"></script>
+	
+	<script type="text/javascript" src="/components/turn/turn.js"></script>
+	<script type="text/javascript" src="/components/zeroclipboard/ZeroClipboard.js"></script>
+	
 </head>
 <body>
 <div class="container">
