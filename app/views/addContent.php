@@ -1,10 +1,5 @@
-<?php if(isset($message)){echo $message;} ?><br/>
-<head>
-<script src="components/jquery.googleSuggest.js"></script>
-<script src="components/croppic/croppic.js"></script>
-<script src="scripts/addContent.js"></script>
-<link href="components/croppic/croppic.css" type="text/css" rel="stylesheet"/>
-</head>
+<?php if(isset($message)){echo $message;} ?>
+
 <style>
 	#cropImage {
 			margin-left: 200px;

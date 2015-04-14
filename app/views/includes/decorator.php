@@ -41,6 +41,11 @@
 	<script type="text/javascript" src="/components/turn/turn.js"></script>
 	<script type="text/javascript" src="/components/zeroclipboard/ZeroClipboard.js"></script>
 	
+	<script src="components/jquery.googleSuggest.js"></script>
+	<script src="components/croppic/croppic.js"></script>
+	<script src="scripts/addContent.js"></script>
+	<link href="components/croppic/croppic.css" type="text/css" rel="stylesheet"/>
+	
 </head>
 <body>
 <div class="container-full">
