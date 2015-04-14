@@ -20,14 +20,6 @@
 		<div class="col-md-2">
 		Title: <input id="titleText" type="text" name="title"/>
 		</div>
-		</div>
-		
-		<div class="row">
-		 <div class="col-md-2"> 
-	 </div>
-		<!-- Post Text -->
-		<div class="col-md-5">Post Text: <textarea rows="3" cols="80" name="postText" id="postText"></textarea><br/>
-		</div>
 		<div class="col-md-4">
 		Related Tags: <input type="text" name="addTag" id="addTagTxt"/><input type="button" value="Add Tag" id="addTagBtn"/> <br/>
 		</div>
@@ -36,6 +28,15 @@
 			<ul>
 				<!-- LI elements for selected tags appear here -->
 			</ul>
+		</div>
+		</div>
+		</div>
+		
+		<div class="row">
+		 <div class="col-md-2"> 
+	 </div>
+		<!-- Post Text -->
+		<div class="col-md-5">Post Text: <textarea rows="3" cols="80" name="postText" id="postText"></textarea><br/>
 		</div>
 		</div>
 		
