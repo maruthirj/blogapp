@@ -99,11 +99,10 @@ class ContentController extends BaseController {
 		$post->post_text = Input::get("postText");
 		$post->user_id = Auth::id();
 		$post->save();
-		$tagNames = Input::get("tags");
-		Log::debug("Tag names: ".implode(",",$tagNames));
 		$tm = new TagManager();
 		$rankCounter = 0;
-		foreach ($tagNames as $tagName) {
+		foreach ($_POST['tags'] as $tagName) {
+		  if ($tagName) {
 			$rankCounter = $rankCounter+1;
 			Log::debug("Tag name = ".$tagName);
 			$id = $tm->findOrCreateTag($tagName);
@@ -113,6 +112,7 @@ class ContentController extends BaseController {
 			$postTagRank->tag_id = $id;
 			$postTagRank->rank = $rankCounter;
 			$postTagRank->save();
+		  }
 		}
 		$data = array("message"=>"Post Saved. You may add more posts.");
 		return View::make('includes.decorator')->nest('contentView', 'addContent', $data);
@@ -131,6 +131,16 @@ class ContentController extends BaseController {
 			$searchStr = str_replace("tag=", "", $searchStr);
 			$tag = Tag::where("name",$searchStr)->first();
 			//REVISIT - put this thru the getNextPost logic
+			//code to save rank starts
+			if(!isset($_COOKIE[$searchStr])) {
+				$rank = $tag->rank;
+				$rank = $rank + 1;
+				//echo $rank;
+				setcookie($searchStr,$rank);
+				$tag->rank = $rank;
+				$tag->save();
+			}
+			//code to save rank ends
 			$post = $tag->posts()->first();
 		}else if(strlen($searchStr)!=0){
 			Log::debug("Key search");
@@ -324,5 +334,6 @@ class ContentController extends BaseController {
 		
 		//return Response::json();;
 	}
+	
 }
 ?>

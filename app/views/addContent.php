@@ -29,6 +29,9 @@
 				<!-- LI elements for selected tags appear here -->
 			</ul>
 		</div>
+		<div id="hiddenFieldsDiv">
+			<!-- Hidden fields with name "tags" for selected tags appear here -->
+		</div>
 		</div>
 		</div>
 		
@@ -42,9 +45,7 @@
 		
 		<div class="row">
 		<div class="col-md-9">
-		<div id="hiddenFieldsDiv">
-			<!-- Hidden fields with name "tags" for selected tags appear here -->
-		</div>
+		
 		</div>
 		</div>
 		<!-- The image uploader goes into this div -->
@@ -58,6 +59,7 @@
 		<input type="hidden" id="uploadedUrl" name="imageUrl" value="">
 		By posting this content, you here by state and agree that you are not performing any kind of copyright violation with respect to this content. Copyright violations could lead to suspension of your account on this site. ALL CONTENT WILL BE MODERATED before it is available for public viewing to make sure that the content is not abusive/offensive or voilate norms of this site.
 		<input type="submit" value="Post It!"/>
+		</div>
 		</div>
 		
 		</form>
