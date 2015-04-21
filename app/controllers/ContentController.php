@@ -101,7 +101,8 @@ class ContentController extends BaseController {
 		$post->save();
 		$tm = new TagManager();
 		$rankCounter = 0;
-		foreach ($_POST['tags'] as $tagName) {
+		$tags = $_POST['tags'];
+		foreach ($tags as $tagName) {
 		  if ($tagName) {
 			$rankCounter = $rankCounter+1;
 			Log::debug("Tag name = ".$tagName);
