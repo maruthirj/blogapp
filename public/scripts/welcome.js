@@ -74,3 +74,24 @@ function setupCopyToClipboard(){
 	});	
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,68 +1,164 @@
 <script type="text/javascript" src="/scripts/welcome.js"></script>
-<script type="text/javascript">
-function turnPrevPage(){
-	$("#flipbook").turn("previous");
-}
+<!--<link href="img/style.css" rel="stylesheet">-->
+<link href='http://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
 
-function turnNextPage(){
-	$("#flipbook").turn("next");
-}
+<!--<link href="../../public/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">-->
+
+<script type="text/javascript">
+	$("#flipbook").turn({
+		width: 400,
+		height: 300,
+		autoCenter: true
+	});
 </script>
+
+<script src="/scripts/tagcanvas.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      window.onload = function() {
+        try {
+          TagCanvas.Start('myCanvas','tags',{
+            textColour: '#ff0000',
+            outlineColour: '#ff00ff',
+            reverse: true,
+            depth: 0.8,
+            maxSpeed: 0.05
+          });
+        } catch(e) {
+          // something went wrong, hide the canvas container
+          document.getElementById('myCanvasContainer').style.display = 'none';
+        }
+      };
+    </script>
+
+<body>
+<div class="top">
+</div>
+<div class="container">
 <div class="row">
 	<!-- Logo -->
-	<div class="col-md-3"><img src="img/logo.png"/></div>
+	<div class="col-md-3 logobrand">
+    <img src="img/logo.png" />
+    </div>
 	<!-- 1. Search -->	 
-	<div class="col-md-4">
-		<form action="" name="form" id="form" style="margin-left:0px;margin-top:10px;">
-			<input type="text" name="search" id="search" size="50"/>
-			<input type="button" value="Search" onclick="searchTag()" style="margin-left:0px;margin-top:10px;"/>
+	<div class="col-md-9 form">
+		<form action="" name="form" id="form" style="margin-left:0px;margin-top:0px; float:right">
+			<input type="text" name="search" id="search" size="50" class="sreachtab"/>
+			<input type="button" value="" onClick="searchTag()" class="searchbtn" />
 		</form>
 	</div>
 </div>
+</div>
+<div class="bottom">
+</div>
 
-<div class="row">
-	 <div class="col-md-2"> 
+
+<div class="middle">
+<div class="container-fluid"><div class="row">
+	 <div class="col-md-2">
+     <div class="add"></div>
 	 </div>
-	<div class="imagePanel col-md-8">
+	<div class="imagePanel col-md-8 banner">
 		<div id="flipbook">
 			<div  style="background: white;">
 				<?php include 'postView.php'?>
+                <img id="img1" src="img/img1.jpg" height="600" width="900">
+                <div class="caption">
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                </div>
 			</div>
 		</div>
+        
+        <div class="controlBtn"><div class="left"><img src="img/left.jpg" /></div>
+        <div class="right"><img src="img/right.jpg" /></div></div>
 	</div>
 	<!-- Tags -->
-	<div class="col-md-2">
+	<div class="col-md-2 clouds">
 		<div class="tags">
-			<!-- End of Tags -->
+			<!--<div id="myCanvasContainer">
+      <canvas width="210" height="210" id="myCanvas">        
+      </canvas>
+    </div>
+    <div id="tags">
+      <ul>
+        <li><a href="#" target="_blank">Carmax</a></li>
+        <li><a href="#">Football</a></li>
+        <li><a href="#">Ganesh</a></li>
+        <li><a href="#">Simmons</a></li>
+        <li><a href="#">Ninja</a></li>
+        <li><a href="#">Marriott</a></li>
+        <li><a href="#">Career builder</a></li>
+        <li><a href="#">Ganesh Chaturthi</a></li>
+      </ul>
+    </div>-->
+
+
+            
+            <img src="img/hr.png" />
+            <!--<div id="myCanvasContainer">
+      <canvas width="210" height="210" id="myCanvas">
+      </canvas>
+    </div>
+    <div id="tags">
+      <ul>
+        <li><a href="#" target="_blank">Carmax</a></li>
+        <li><a href="#">Football</a></li>
+        <li><a href="#">Ganesh</a></li>
+        <li><a href="#">Simmons</a></li>
+        <li><a href="#">Ninja</a></li>
+        <li><a href="#">Marriott</a></li>
+        <li><a href="#">Career builder</a></li>
+        <li><a href="#">Ganesh Chaturthi</a></li>
+      </ul>
+    </div>-->
+
+           
 		</div>
 	</div>
+</div></div>
 </div>
+
 <!-- Rating, facebook, twitter and copy -->
 <div class="row">
-	<div class="col-md-12">
+	<div class="stars">
 		<input type="hidden" id="ratingVal" value="0"></input>
 		<div id="ratingTable">
-			<span><img id="img1" src="img/star_empty.png" onmouseover="fillImg(1)" onmouseout="normalImg(1)" 
+			<span><img id="img1" src="img/star_empty.png" onMouseOver="fillImg(1)" onMouseOut="normalImg(1)" 
 				onClick="giveRating(1)" height="42" width="42"></span>
-			<span><img id="img2" src="img/star_empty.png" onmouseover="fillImg(2)" onmouseout="normalImg(2)" 
+			<span><img id="img2" src="img/star_empty.png" onMouseOver="fillImg(2)" onMouseOut="normalImg(2)" 
 				onClick="giveRating(2)" height="42" width="42"></span>
-			<span><img id="img3" src="img/star_empty.png" onmouseover="fillImg(3)" onmouseout="normalImg(3)" 
+			<span><img id="img3" src="img/star_empty.png" onMouseOver="fillImg(3)" onMouseOut="normalImg(3)" 
 				onClick="giveRating(3)" height="42" width="42"></span>
-			<span><img id="img4" src="img/star_empty.png" onmouseover="fillImg(4)" onmouseout="normalImg(4)" 
+			<span><img id="img4" src="img/star_empty.png" onMouseOver="fillImg(4)" onMouseOut="normalImg(4)" 
 				 onClick="giveRating(4)" height="42" width="42"></span>
-			<span><img id="img5" src="img/star_empty.png" onmouseover="fillImg(5)" onmouseout="normalImg(5)" 
+			<span><img id="img5" src="img/star_empty.png" onMouseOver="fillImg(5)" onMouseOut="normalImg(5)" 
 				onClick="giveRating(5)" height="42" width="42"></span>
 			<!-- Facebook Share Button below images-->
-			<span class="fb-share-button" data-href="" data-layout="button"></span>
+			<!--<span class="fb-share-button" data-href="" data-layout="button"></span>-->
 		</div>
-	
-		<!-- Twitter Button below images-->
-		<a class="twitter-share-button" data-url="" data-related="twitterdev" data-size="large" data-count="none">Tweet</a>
-	
-		<!--  Button to copy the image link below images-->
-		<button id="copy-button">Copy Link</button>
 	</div>
 </div>
+<div class="clearfix"></div>
+<div class="footer">
+<div class="container">
+<div class="row">
+<!-- Facebook Share Button below images
+			<span class="fb-share-button" data-href="" data-layout="button"></span>-->
+		<!-- Twitter Button below images
+		<a class="twitter-share-button" data-url="" data-related="twitterdev" data-size="large" data-count="none">Tweet</a>-->
+	
+		<!--  Button to copy the image link below images
+		<button id="copy-button">Copy Link</button>-->
+        <div class="socialicon">
+        <div class="social" ><a class="socialicon1" href="https://www.facebook.com/login.php?next=https%3A%2F%2Fwww.facebook.com%2Fsharer%2Fsharer.php%3Fapp_id%3D309437425817038%26sdk%3Djoey%26u%3Dhttp%253A%252F%252Fwww.flikbuk.com%252F%26display%3Dpopup%26ref%3Dplugin%26src%3Dshare_button%26ret%3Dlogin&display=popup" target="_blank"></a></div>
+        <div class="social"><a class="socialicon2" href="https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Fwww.flikbuk.com%2F&related=twitterdev&text=Flikbuk&tw_p=tweetbutton&url=http%3A%2F%2Fwww.flikbuk.com%2F" target="_blank"></a></div>
+        <div class="social"><a class="socialicon3" href="#" target="_blank"></a></div>
+        <div class="social"><a class="socialicon4" href="#" target="_blank"></a></div>
+        <div class="social"><a class="socialicon5" href="#" target="_blank"></a></div>
+        </div>
+</div>
+</div>
+</div>
+
 <script type="text/javascript">
 function searchTag(){
 	   var form = document.getElementById("form");
@@ -147,3 +243,4 @@ function searchTag(){
 		}
 	}
 </script>
+</body>
