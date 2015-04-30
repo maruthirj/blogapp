@@ -1,9 +1,18 @@
 <script type="text/javascript" src="/scripts/welcome.js"></script>
+<script type="text/javascript">
+function turnPrevPage(){
+	$("#flipbook").turn("previous");
+}
+
+function turnNextPage(){
+	$("#flipbook").turn("next");
+}
+</script>
 <div class="row">
 	<!-- Logo -->
-	<div class="col-md-3"><img src="img/logo.png" width="162px;" height="68px;"/></div>
+	<div class="col-md-3"><img src="img/logo.png"/></div>
 	<!-- 1. Search -->	 
-	<div class="col-md-9">
+	<div class="col-md-4">
 		<form action="" name="form" id="form" style="margin-left:0px;margin-top:10px;">
 			<input type="text" name="search" id="search" size="50"/>
 			<input type="button" value="Search" onclick="searchTag()" style="margin-left:0px;margin-top:10px;"/>

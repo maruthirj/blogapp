@@ -19,7 +19,7 @@ Route::get('signup', function()
 Route::post('signup', 'UserController@signup');
 Route::get('login', function()
 {
-	return View::make('loginForm');
+	return View::make('includes.decorator')->nest('contentView', 'loginForm');
 });
 
 //route for tag relation
@@ -44,6 +44,14 @@ Route::get('posts/{key}', function($key)
 /**
  * Authenticated pages
  */
+Route::get('editContent', array('before' => 'auth', function()
+{
+	return View::make('includes.decorator')->nest('contentView', 'editContent');
+}));
+Route::get('reset', function()
+{
+	return View::make('includes.decorator')->nest('contentView', 'reset');
+});
 Route::get('addContent', array('before' => 'auth', function()
 {
 	return View::make('includes.decorator')->nest('contentView', 'addContent');
@@ -56,5 +64,9 @@ Route::get('/getNextPost/{key}', 'ContentController@getNextPost');
 Route::get('/tags/{key?}', 'ContentController@getTags');
 Route::get('/{searchStr?}', 'ContentController@renderContent');
 Route::post('saveRating', 'ContentController@saveRating');
+Route::post('saveEditContent', array('before' => 'auth', 'uses' => 'ContentController@saveEditContent'));
+Route::post('forgotPassword', 'UserController@forgotPassword');
+Route::post('updatePassword', 'UserController@updatePassword');
+
 
 
