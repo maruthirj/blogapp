@@ -1,6 +1,7 @@
 <input name="postKeyUrl" type="hidden" value="<?php echo $post->keyForLink() ?>"/>
 <input name="postKey" type="hidden" value="<?php echo $post->post_key ?>"/>
 <input name="title" type="hidden" value="<?php echo $post->title ?>"/>
+<link href="style.css" rel="stylesheet">
 <div class="posttitle">
 <?php echo $post->title ?>
 </div>

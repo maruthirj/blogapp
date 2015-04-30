@@ -3,3 +3,4 @@ composer.lock
 .DS_Store
 Thumbs.db
 public/img/content/*
+app/config/.database.php.swp

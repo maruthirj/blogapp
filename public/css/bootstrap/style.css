@@ -1,0 +1,70 @@
+/* CSS Document */
+
+@font-face {
+    font-family: 'neuropol_xregular';
+    src:url('../../public/fonts/neuropol_x_rg-webfont.eot');
+    src: url('../../public/fonts/neuropol_x_rg-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../public/fonts/neuropol_x_rg-webfont.woff2') format('woff2'),
+         url('../../public/fonts/neuropol_x_rg-webfont.woff') format('woff'),
+         url('../../public/fonts/neuropol_x_rg-webfont.ttf') format('truetype'),
+         url('../../public/fonts/neuropol_x_rg-webfont.svg#neuropol_xregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@import url(http://fonts.googleapis.com/css?family=Lato);
+@import url(http://fonts.googleapis.com/css?family=Audiowide);
+
+
+body{ margin:0 auto; }
+.clearfix{ clear:both;}
+.container {  width: 1170px; margin:0 auto;}
+.top{background:#494949; height:70px; width:100%; position:relative; }
+.logobrand img{ float:left; position:absolute; margin-top:-20px;}
+.bottom{background:#494949; height:5px; width:100%; margin-top:37px; }
+.form{ padding-top:20px; padding-bottom:17px;}
+.sreachtab{ background:#dfdddd; border:1px solid #ffb0b0; height:38px; width:82%}
+.searchbtn{ background:url(search.jpg) no-repeat; margin-left:20px; margin-top:0px; float:right; height:38px; width:49px; border:none; cursor:pointer;}
+.banner{ margin-left:0%; }
+.banner1{ margin-left:40%; }
+.banner h1{ color:#ec3a3e; font-size:26px; font-family: 'Audiowide', cursive;}
+.banner1 h1{ color:#ec3a3e; font-size:26px; font-family: 'Audiowide', cursive;}
+.banner p{ font-size:14px; color:#414141; font-family: 'Lato', sans-serif; width:55%; margin-top:20px; float:left; margin-right:16%;}
+.left{ float:left; margin-right:5px; margin-top:20px; margin-left:0%;}
+.right{ margin-top:20px; float:left; margin-right:0%;}
+.add{ background:#dfdddd; height:600px; width:150px; float:left; margin:48px 20px;}
+.clouds{ width:255px; float:right; margin-top:-610px;}
+.clouds img{ padding-left:20px; }
+.tag{ float:right;}
+.caption{ margin-left:14%}
+.footer{ background:#494949; height:24px; width:100%; margin-top:50px; }
+.socialicon{ margin-top:-30px; position:absolute; }
+.social{ float:left}
+.socialicon1{ margin-right:10px; background:url(fb.png) no-repeat; width:48px; height:40px; float:left;}
+.socialicon1:hover{ margin-right:10px; background:url(fb-a.png) no-repeat; }
+.socialicon2{ margin-right:10px; background:url(tt.png) no-repeat; width:48px; height:40px;  float:left;}
+.socialicon2:hover{ margin-right:10px; background:url(tt-a.png) no-repeat; }
+.socialicon3{ margin-right:10px; background:url(gplus.png) no-repeat; width:48px; height:40px;  float:left;}
+.socialicon3:hover{ margin-right:10px; background:url(gplus-a.png) no-repeat; }
+.socialicon4{ margin-right:10px; background:url(pr.png) no-repeat; width:48px; height:40px; float:left; }
+.socialicon4:hover{ margin-right:10px; background:url(pr-a.png) no-repeat; }
+.socialicon5{ margin-right:10px; background:url(yt.png) no-repeat; width:48px; height:40px; float:left;}
+.socialicon5:hover{ margin-right:10px; background:url(yt-a.png) no-repeat; }
+.middle{ margin-top:40px;}
+
+.boxBody{ width:300px; height:100px; font-size:14px; color:#000; font-family: 'Lato', sans-serif; padding-top:40px; padding-left:40px;}
+.boxBody input{ margin-bottom:20px;}
+.login{ background:#ec3a3e; width:90px; height:35px; border:none; margin-top:10px; color:#fff;}
+.rLink{ font-size:12px; color:#000; font-family: 'Lato', sans-serif; }
+
+
+
+.wordcloud {
+border: 1px solid #036;
+height: 7in;
+margin: 0.5in auto;
+padding: 0;
+page-break-after: always;
+page-break-inside: avoid;
+width: 7in;
+}
