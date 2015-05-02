@@ -137,6 +137,9 @@ class ContentController extends BaseController {
 				$rank = $tag->rank;
 				$rank = $rank + 1;
 				//echo $rank;
+				if(strpos($searchStr, ' ')!==false){
+				$searchStr=str_replace(' ', '_', $searchStr);
+				}
 				setcookie($searchStr,$rank);
 				$tag->rank = $rank;
 				$tag->save();
