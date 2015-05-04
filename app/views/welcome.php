@@ -28,6 +28,13 @@
           document.getElementById('myCanvasContainer').style.display = 'none';
         }
       };
+function turnPrevPage(){
+	$("#flipbook").turn("previous");
+}
+
+function turnNextPage(){
+	$("#flipbook").turn("next");
+}
     </script>
 
 <body>
@@ -68,8 +75,8 @@
 			</div>
 		</div>
         
-        <div class="controlBtn"><div class="left"><img src="img/left.jpg" /></div>
-        <div class="right"><img src="img/right.jpg" /></div></div>
+        <div class="controlBtn"><div class="left"><img src="img/left.jpg" onclick="turnPrevPage()"/></div>
+        <div class="right"><img src="img/right.jpg" onclick="turnNextPage()"/></div></div>
 	</div>
 	<!-- Tags -->
 	<div class="col-md-2 clouds">
