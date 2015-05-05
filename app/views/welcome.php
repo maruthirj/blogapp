@@ -81,44 +81,9 @@ function turnNextPage(){
 	<!-- Tags -->
 	<div class="col-md-2 clouds">
 		<div class="tags">
-			<!--<div id="myCanvasContainer">
-      <canvas width="210" height="210" id="myCanvas">        
-      </canvas>
-    </div>
-    <div id="tags">
-      <ul>
-        <li><a href="#" target="_blank">Carmax</a></li>
-        <li><a href="#">Football</a></li>
-        <li><a href="#">Ganesh</a></li>
-        <li><a href="#">Simmons</a></li>
-        <li><a href="#">Ninja</a></li>
-        <li><a href="#">Marriott</a></li>
-        <li><a href="#">Career builder</a></li>
-        <li><a href="#">Ganesh Chaturthi</a></li>
-      </ul>
-    </div>-->
-
-
-            
+			
             <img src="img/hr.png" />
-            <!--<div id="myCanvasContainer">
-      <canvas width="210" height="210" id="myCanvas">
-      </canvas>
-    </div>
-    <div id="tags">
-      <ul>
-        <li><a href="#" target="_blank">Carmax</a></li>
-        <li><a href="#">Football</a></li>
-        <li><a href="#">Ganesh</a></li>
-        <li><a href="#">Simmons</a></li>
-        <li><a href="#">Ninja</a></li>
-        <li><a href="#">Marriott</a></li>
-        <li><a href="#">Career builder</a></li>
-        <li><a href="#">Ganesh Chaturthi</a></li>
-      </ul>
-    </div>-->
-
-           
+            
 		</div>
 	</div>
 </div></div>

@@ -24,7 +24,7 @@ body{ margin:0 auto; }
 .bottom{background:#494949; height:5px; width:100%; margin-top:37px; }
 .form{ padding-top:20px; padding-bottom:17px;}
 .sreachtab{ background:#dfdddd; border:1px solid #ffb0b0; height:38px; width:82%}
-.searchbtn{ background:url(search.jpg) no-repeat; margin-left:20px; margin-top:0px; float:right; height:38px; width:49px; border:none; cursor:pointer;}
+.searchbtn{ background:url(../../img/search.jpg) no-repeat; margin-left:20px; margin-top:0px; float:right; height:38px; width:49px; border:none; cursor:pointer;}
 .banner{ margin-left:0%; }
 .banner1{ margin-left:40%; }
 .banner h1{ color:#ec3a3e; font-size:26px; font-family: 'Audiowide', cursive;}

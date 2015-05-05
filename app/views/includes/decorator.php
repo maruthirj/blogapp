@@ -28,7 +28,7 @@
 		}
 	</style>
 	<link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap/style.css">
+	  <!-- <link rel="stylesheet" href="css/bootstrap/style.css"> -->
 	<link rel="stylesheet" href="css/bootstrap/bootstrap-theme.min.css">
 	<script src="scripts/js/jquery.min.js"></script>
 	<script src="scripts/js/bootstrap/bootstrap.min.js"></script>
@@ -62,4 +62,3 @@
 </div>
 </body>
 </html>
-
