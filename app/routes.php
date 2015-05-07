@@ -65,6 +65,7 @@ Route::get('/tags/{key?}', 'ContentController@getTags');
 Route::get('/{searchStr?}', 'ContentController@renderContent');
 Route::post('saveRating', 'ContentController@saveRating');
 Route::post('saveEditContent', array('before' => 'auth', 'uses' => 'ContentController@saveEditContent'));
+Route::post('saveDeleteContent', array('before' => 'auth', 'uses' => 'ContentController@saveDeleteContent'));
 Route::post('forgotPassword', 'UserController@forgotPassword');
 Route::post('updatePassword', 'UserController@updatePassword');
 

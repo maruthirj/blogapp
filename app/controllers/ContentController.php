@@ -354,6 +354,20 @@ class ContentController extends BaseController {
 		$tag[0]->save();
 		
 	}
-	
+	public function saveDeleteContent(){
+		$title = Input::get('title');
+		$postText = Input::get('postText');
+		$tagVal = Input::get('tag');
+		$pid = Input::get('pid');
+		$tid = Input::get('tid');
+		$post = Post::where("id",$pid)->get();
+		$post[0]->post_text = $postText;
+		$post[0]->title = $title;
+		$post[0]->save();
+		$tag = Tag::where("id",$tid)->get();
+		$tag[0]->name = $tagVal;
+		$tag[0]->save();
+		
+	}
 }
 ?>

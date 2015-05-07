@@ -13,7 +13,7 @@ th, td {
 </style>
   <script>
   $(function() {
-    $( "#dialog" ).dialog({
+    $( "#dialogEdit" ).dialog({
         autoOpen: false,
 		modal: true,
 		height: 280,
@@ -22,7 +22,21 @@ th, td {
 		closeOnEscape: true,
 		open: function(){
 			jQuery('.ui-widget-overlay').bind('click',function(){
-				jQuery('#dialog').dialog('close');
+				jQuery('#dialogEdit').dialog('close');
+			});
+		}
+	   });
+	   
+	   $( "#dialogDelete" ).dialog({
+        autoOpen: false,
+		modal: true,
+		height: 280,
+		width: 390,
+		top:410,
+		closeOnEscape: true,
+		open: function(){
+			jQuery('.ui-widget-overlay').bind('click',function(){
+				jQuery('#dialogDelete').dialog('close');
 			});
 		}
 	   });
@@ -34,8 +48,19 @@ th, td {
 		$("#addTagTxt").val(tag);
 		$("#pid").val(pid);
 		$("#tid").val(tid);
-		$('#dialog').dialog('open');
+		$('#dialogEdit').dialog('open');
   }
+  
+  function deleteContent(title,postText,tag,pid,tid){
+ 
+		$("#titleId").val(title);
+		$("#postTextId").val(postText);
+		$("#addTagTxt").val(tag);
+		$("#pid").val(pid);
+		$("#tid").val(tid);
+		$('#dialogDelete').dialog('open');
+  }
+  
   function submit(){
 		var title = $("#titleId").val();
 		var postText = $("#postTextId").val();
@@ -46,13 +71,32 @@ th, td {
 		   	type: "POST",
 			url:'saveEditContent?title='+title+"&postText="+postText+"&tag="+tag+"&pid="+pid+"&tid="+tid,
 			success:function(res){
-				jQuery('#dialog').dialog('close');
+				jQuery('#dialogEdit').dialog('close');
 				window.location="/editContent";
 			}
 		});
   }
+  function deleteSubmit(){
+		var title = $("#titleId").val();
+		var postText = $("#postTextId").val();
+		var tag= $("#addTagTxt").val();
+		var pid = $("#pid").val();
+		var tid = $("#tid").val();
+		$.ajax({
+		   	type: "POST",
+			url:'saveDeleteContent?title='+title+"&postText="+postText+"&tag="+tag+"&pid="+pid+"&tid="+tid,
+			success:function(res){
+				jQuery('#dialogDelete').dialog('close');
+				window.location="/deleteContent";
+			}
+		});
+  }
   function cancel(){
-	jQuery('#dialog').dialog('close');
+	jQuery('#dialogEdit').dialog('close');
+  }
+  
+  function deleteCancel(){
+	jQuery('#dialogDelete').dialog('close');
   }
   </script>
 </head>
@@ -62,7 +106,7 @@ th, td {
 	<div class="col-md-2">
 		<img src="img/logo.png" width="162px;" height="68px;"/>
 	</div> 
-<div id="dialog" style="width:30px;height:60px;display: none;z-index:10000" title="Edit Content">
+<div id="dialogEdit" style="width:30px;height:60px;display: none;z-index:10000" title="Edit Content">
 		<table style="width:30%;border: 0px">
 		 <tr>
 		  <td style="font-size:14px;border: 0px">Title</td>
@@ -89,6 +133,22 @@ th, td {
 		</table>
 </div>
  
+ <!-- Dialog box for Deleting posts -->
+ <div id="dialogDelete" title="Delete Post">
+		<table style="width:100%;border: 0px">
+		 <tr style="width:100%; border: 0px">
+		  <td style="font-size:14px;border:0px;width:100%;">Do you want to Delete this post?</td>
+		 </tr>
+		<tr style="width:100%; border: 0px">
+		  <td style="border: 0px;"><input style="font-size:18px" type="button" onclick="deleteSubmit();" value="Submit"> </td>
+		  <td style="border: 0px;"><input style="font-size:18px" type="button" onclick="deleteCancel();" value="Cancel"> </td>
+		  <td style="border: 0px"><input type="hidden" id="pid" name="pid"> </td>
+		  <td style="border: 0px"><input type="hidden" id="tid" name="tid"> </td>
+		 </tr>
+		</table>
+</div> 
+ 
+ 
  <table style="width:70%">
   <caption>Posts Lists</caption>
 <tr>
@@ -109,6 +169,7 @@ foreach($results as $data){
 	echo '<td>'.$value->post_text.'</td>';
 	echo '<td>'.$value->name.'</td>';
 	echo '<td><a href="#" onclick="editContent(\''.$value->title.'\',\''.$value->post_text.'\',\''.$value->name.'\',\''.$value->pid.'\',\''.$value->tid.'\')">Edit</a></td>';
+	echo '<td><a href="#" onclick="deleteContent(\''.$value->title.'\',\''.$value->post_text.'\',\''.$value->name.'\',\''.$value->pid.'\',\''.$value->tid.'\')">Delete</a></td>';
 	echo '</tr>';
    
   }
