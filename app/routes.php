@@ -44,10 +44,17 @@ Route::get('posts/{key}', function($key)
 /**
  * Authenticated pages
  */
+ //route for editing the contents
 Route::get('editContent', array('before' => 'auth', function()
 {
 	return View::make('includes.decorator')->nest('contentView', 'editContent');
 }));
+//route to approve and delete contents
+Route::get('approveContent', array('before' => 'auth', function()
+{
+	return View::make('includes.decorator')->nest('contentView', 'approveContent');
+}));
+
 Route::get('reset', function()
 {
 	return View::make('includes.decorator')->nest('contentView', 'reset');
@@ -65,7 +72,8 @@ Route::get('/tags/{key?}', 'ContentController@getTags');
 Route::get('/{searchStr?}', 'ContentController@renderContent');
 Route::post('saveRating', 'ContentController@saveRating');
 Route::post('saveEditContent', array('before' => 'auth', 'uses' => 'ContentController@saveEditContent'));
-Route::post('saveDeleteContent', array('before' => 'auth', 'uses' => 'ContentController@saveDeleteContent'));
+Route::post('deleteContent', array('before' => 'auth', 'uses' => 'ContentController@deleteContent'));
+Route::post('saveApprovedContent', array('before' => 'auth', 'uses' => 'ContentController@saveApprovedContent'));
 Route::post('forgotPassword', 'UserController@forgotPassword');
 Route::post('updatePassword', 'UserController@updatePassword');
 

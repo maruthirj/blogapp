@@ -98,6 +98,7 @@ class ContentController extends BaseController {
 		$post->title = Input::get("title");
 		$post->post_text = Input::get("postText");
 		$post->user_id = Auth::id();
+		$post->flag=0;
 		$post->save();
 		$tm = new TagManager();
 		$rankCounter = 0;
@@ -354,20 +355,22 @@ class ContentController extends BaseController {
 		$tag[0]->save();
 		
 	}
-	public function saveDeleteContent(){
-		$title = Input::get('title');
-		$postText = Input::get('postText');
-		$tagVal = Input::get('tag');
+	public function deleteContent(){
 		$pid = Input::get('pid');
 		$tid = Input::get('tid');
+		Log::info("pid -----------------------------------------------------------------: ".$pid);
 		$post = Post::where("id",$pid)->get();
-		$post[0]->post_text = $postText;
-		$post[0]->title = $title;
+		$post[0]->delete();
+		$tag = Post::where("id",$tid)->get();
+		$tag[0]->delete();
+	}
+	
+	public function saveApprovedContent(){
+		$pid = Input::get('pid');
+		Log::info("pid -----------------------------------------------------------------: ".$pid);
+		$post = Post::where("id",$pid)->get();
+		$post[0]->flag = 1;
 		$post[0]->save();
-		$tag = Tag::where("id",$tid)->get();
-		$tag[0]->name = $tagVal;
-		$tag[0]->save();
-		
 	}
 }
 ?>
