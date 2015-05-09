@@ -357,12 +357,13 @@ class ContentController extends BaseController {
 	}
 	public function deleteContent(){
 		$pid = Input::get('pid');
-		$tid = Input::get('tid');
-		Log::info("pid -----------------------------------------------------------------: ".$pid);
-		$post = Post::where("id",$pid)->get();
-		$post[0]->delete();
-		$tag = Post::where("id",$tid)->get();
+        $tid = Input::get('tid');
+		$posttagrank = Posttagrank::where("post_id",$pid)->get();
+		$posttagrank[0]->delete();
+		$tag = Tag::where("id",$tid)->get();
 		$tag[0]->delete();
+        $post = Post::where("id",$pid)->get();
+        $post[0]->delete();
 	}
 	
 	public function saveApprovedContent(){

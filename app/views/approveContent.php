@@ -95,8 +95,8 @@ th, td {
 		});
   }
   function deleteSubmit(){
-		var pid = $("#tid").val();
-		var pid = $("#tid").val();
+		var pid = $("#pid").val();
+		var tid = $("#tid").val();
 		$.ajax({
 		   	type: "POST",
 			url:'deleteContent?pid='+pid+"&tid="+tid,
