@@ -51,11 +51,7 @@ th, td {
 		$('#dialogEdit').dialog('open');
   }
   
-  function deleteContent(title,postText,tag,pid,tid){
- 
-		$("#titleId").val(title);
-		$("#postTextId").val(postText);
-		$("#addTagTxt").val(tag);
+ function deleteContent(pid,tid){
 		$("#pid").val(pid);
 		$("#tid").val(tid);
 		$('#dialogDelete').dialog('open');
@@ -92,7 +88,7 @@ th, td {
 	jQuery('#dialogEdit').dialog('close');
   }
   
-  function deleteCancel(){
+ function deleteCancel(){
 	jQuery('#dialogDelete').dialog('close');
   }
   </script>
