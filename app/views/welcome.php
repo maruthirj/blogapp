@@ -62,7 +62,11 @@ function turnNextPage(){
 <div class="middle">
 <div class="container-fluid"><div class="row">
 	 <div class="col-md-2">
-     <div class="add"></div>
+	 <div class="logpanel">
+	<a href="/addContent" style="text-decoration: none;">
+	<h1 style="border-radius: 6px; width:176px;font-family: Audiowide,cursive; font-size: 18px;"> Contribute </h1></a>
+    <!-- <div class="add"></div> -->
+	 </div>
 	 </div>
 	<div class="imagePanel col-md-8 banner">
 		<div id="flipbook">
