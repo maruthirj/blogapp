@@ -145,7 +145,7 @@ th, td {
  <table style="width:70%">
   <caption>Posts Lists</caption>
 <tr>
-<th>Post Key</th>
+<th>Image</th>
 <th>Title</th>
 <th>Post Text</th>
 <th>Tag</th>
@@ -156,8 +156,9 @@ $results = array(DB::select('select p.id as pid,p.post_key,p.title,p.post_text,t
  join tags t on pt.tag_id=t.id where p.user_id=?' ,array($userId)));
 foreach($results as $data){
   foreach($data as $value){
+	$postk=$value->post_key;
 	echo '<tr>';
-    echo '<td>'.$value->post_key.'</td>';
+    echo '<td><img src="/img/content/'.$postk.'" alt="" style="width:82px; height:60px;"></td>';
 	echo '<td>'.$value->title.'</td>';
 	echo '<td>'.$value->post_text.'</td>';
 	echo '<td>'.$value->name.'</td>';
