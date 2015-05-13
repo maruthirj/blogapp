@@ -42,12 +42,12 @@
 		<label>User Email : </label> <input class="loginTxtbx" type="text" tabindex="1" name="email" required><br>
 		<label>Password : </label> <input class="loginTxtbx" type="password" name="password" tabindex="2" required>
 	</fieldset>
-	<a href="#" class="rLink" tabindex="5"  style="padding: 0 0 0 103px;">Forgot password?</a>
-	<a href="/signup" class="rLink" tabindex="5"  style="padding: 0 0 0 6px;"> | Register</a> 
-	<footer>
+	<a href="#" class="rLink" tabindex="5" style="padding: 0 0 0 3px;">Forgot password?</a> 
+	<footer style="margin-top:-28px;">
 		<label><input type="checkbox" name="persist" tabindex="3">Remember me</label>
 		<input type="submit" class="btnLogin" value="Login" tabindex="4" >
 	</footer>
+	<a href="/signup" class="rLink" tabindex="5"  style="padding: 0 0 0 9px;font-size:15px"> Click here to register if you are new on flikbuk</a>
 	</form>
 
 <div id="dialog" style="width:30px;height:60px;display: none;z-index:10000" title="Forgot Password">
@@ -64,6 +64,7 @@
 </div>
 	</div>
 </div>
+
 
 </body>
 
