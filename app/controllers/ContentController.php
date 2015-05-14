@@ -153,7 +153,8 @@ class ContentController extends BaseController {
 			Log::debug("Post: ".$post);
 		}else {
 			Log::debug("Home page hit.. pull up random post");
-			$post = Post::first();
+			//$post = Post::first();
+			$post = Post::orderByRaw("RAND()")->first();
 			Log::debug("Post: ".$post);
 		}
 		$data = array("post"=>$post);
