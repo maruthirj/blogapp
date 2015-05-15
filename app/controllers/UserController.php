@@ -1,4 +1,5 @@
 <?php
+require("D:/workspace/blogapp/app/mailer/class.phpmailer.php");
 class UserController extends BaseController {
 
 	public function login()
@@ -42,5 +43,41 @@ class UserController extends BaseController {
 		$user->password = $password;
 		$user->save();	
 		return Redirect::to('login');
+	}
+	//code to reset Password.. A Mail will be sent to the user that consits of password reset link..
+	public function forgotPassword(){
+		$mailId = Input::get("mailId");
+		//$user = User::where("email",$userName)->get();
+		$message = "Dear Recipient,<br>We have received your request to reset password.To reset, please click the link below:<br> 
+					<a href='localhost/reset?userName=".$mailId."'>Reset Password</a>";
+		
+		$mail = new PHPMailer();
+		$mail->IsSMTP();  // telling the class to use SMTP
+		$mail->Host     = "smtp.sendgrid.net"; // SMTP server
+		$mail->SMTPAuth   = true;
+		$mail->Username   = "flikbuk_123"; // SMTP account username
+		$mail->Password   = "flikbuk123";        // SMTP account password
+		$mail->SMTPDebug  = 2;
+		$mail->SetFrom('support@flikbuk.com', 'Flikbuk');;
+		$mail->AddAddress($mailId);
+		$mail->Subject  = "Flikbuk Password Reset";
+		$mail->MsgHTML($message);
+		$mail->WordWrap = 50;
+		
+		if(!$mail->Send()) {
+				echo 'Message was not sent.';
+				echo 'Mailer error: ' . $mail->ErrorInfo;
+		} else {
+				echo 'Message has been sent.';
+		}
+		echo "Done";
+	}
+	//This code will Update the user table with new password
+	public function updatePassword(){
+		$userName = Input::get("userName");
+		$user = User::where("email",$userName)->get();
+		$password = Hash::make(Input::get("newPassword"));
+		$user[0]->password = $password;
+		$user[0]->save();
 	}
 }

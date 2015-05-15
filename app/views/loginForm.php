@@ -42,7 +42,7 @@
 		<label>User Email : </label> <input class="loginTxtbx" type="text" tabindex="1" name="email" required><br>
 		<label>Password : </label> <input class="loginTxtbx" type="password" name="password" tabindex="2" required>
 	</fieldset>
-	<a href="#" class="rLink" tabindex="5" style="padding: 0 0 0 3px;">Forgot password?</a> 
+	<a href="#" class="rLink" tabindex="5" onclick="showPopUp()"  style="padding: 0 0 0 3px;">Forgot password?</a> 
 	<footer style="margin-top:-28px;">
 		<label><input type="checkbox" name="persist" tabindex="3">Remember me</label>
 		<input type="submit" class="btnLogin" value="Login" tabindex="4" >
@@ -65,6 +65,48 @@
 	</div>
 </div>
 
+<head>
+<script>
+  $(function() {
+    $( "#dialog" ).dialog({
+        autoOpen: false,
+		modal: true,
+		height: 280,
+		width: 390,
+		top:410,
+		closeOnEscape: true,
+		open: function(){
+			jQuery('.ui-widget-overlay').bind('click',function(){
+				jQuery('#dialog').dialog('close');
+			});
+		}
+	   });
+ 
+  });
+  function showPopUp(){
+		$('#dialog').dialog('open');
+  }
+  function submit(){
+		var mailId = $("#mailId").val();
+		 var re = /\S+@\S+\.\S+/;
+		  var ret = re.test($("#mailId").val());
+		  if(ret == false){
+			  alert("Please enter valid Email");
+			  return false;
+		  }
+		$.ajax({
+		   	type: "POST",
+			url:'forgotPassword?mailId='+mailId,
+			success:function(res){
+				jQuery('#dialog').dialog('close');
+			}
+		});
+  }
+  function cancel(){
+	jQuery('#dialog').dialog('close');
+  }
+  </script>
+  </head>
 
 </body>
 
