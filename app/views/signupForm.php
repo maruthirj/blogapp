@@ -1,7 +1,9 @@
-
+<head>
+<title> Flikbuk | Signup </title>
+<link rel="icon" href="img/favicon.png" type="image/x-icon"/>
 <link href="http://www.flikbuk.com/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
 <!--<link href="../../public/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">-->
-
+</head>
 <body>
 <div class="top"> </div>
 <div class="container">

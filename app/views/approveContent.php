@@ -133,11 +133,18 @@ th, td {
   </script>
 </head>
 <body>
+<div class="top"> </div>
+<div class="container">
+  <div class="row"> 
+    <!-- Logo -->
+    <div class="col-md-3 logobrand"> <img src="img/logo.png" /> </div>
+	
+	<div class="col-md-9 form1"> </div>
+	</div>
+	
+	</div>
+  <div class="bottom"> </div> 
 <div class="row">
-	<!-- Logo -->
-	<div class="col-md-2">
-		<img src="img/logo.png" width="162px;" height="68px;"/>
-	</div> 
 	<!-- Dialog box for edit -->
 <div id="dialogEdit" style="width:30px;height:60px;display: none;z-index:10000" title="Edit Content">
 		<table style="width:30%;border: 0px">
@@ -194,7 +201,7 @@ th, td {
 		</table>
 </div>
  
- <table style="width:70%">
+ <table style="width:80%;margin-left:10%">
   <caption>Posts Lists</caption>
 <tr>
 <th>Image</th>
@@ -216,6 +223,7 @@ foreach($results as $data){
 	echo '<td>'.$value->name.'</td>';
 	echo '<td><a href="#" onclick="approveContent(\''.$value->pid.'\')">Approve Post</a></td>';
 	echo '<td><a href="#" onclick="deleteContent(\''.$value->pid.'\',\''.$value->tid.'\')">Delete</a></td>';
+	//echo '<td>'.$value->email.'</td>';
 	echo '</tr>';
    
   }
