@@ -1,5 +1,4 @@
 <?php
-require("D:/workspace/blogapp/app/mailer/class.phpmailer.php");
 class UserController extends BaseController {
 
 	public function login()
