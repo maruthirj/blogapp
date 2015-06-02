@@ -208,9 +208,14 @@ th, td {
 <th>Title</th>
 <th>Post Text</th>
 <th>Tag</th>
+<th></th>
+<th></th>
+<th>Mail ID</th>
 </tr>
 <?php 
 $userId = Auth::id();
+$user = User::where("id",$userId)->get();
+//echo $user;
 $results = array(DB::select('select p.id as pid,p.post_key,p.title,p.post_text,p.flag,t.id as tid,t.name from posts p join posttagranks pt on p.id=pt.post_id
  join tags t on pt.tag_id=t.id where p.flag=0 AND p.user_id=?' ,array($userId)));
 foreach($results as $data){
@@ -223,7 +228,7 @@ foreach($results as $data){
 	echo '<td>'.$value->name.'</td>';
 	echo '<td><a href="#" onclick="approveContent(\''.$value->pid.'\')">Approve Post</a></td>';
 	echo '<td><a href="#" onclick="deleteContent(\''.$value->pid.'\',\''.$value->tid.'\')">Delete</a></td>';
-	//echo '<td>'.$value->email.'</td>';
+	echo '<td>'.$user[0]->email.'</td>';
 	echo '</tr>';
    
   }

@@ -88,6 +88,20 @@ class ContentController extends BaseController {
 	public function saveContent()
 	{
 		Log::debug('Saving file content');
+		$actionPerformed = Input::get('actionPerformed');
+		session_start();
+		if($actionPerformed == "finish"){
+			$data = array("message"=>"Making Story finishes.");
+			$_SESSION['actionPerformed'] = $actionPerformed;
+			unset($_SESSION['postkeys']);
+			unset($_SESSION['position']);
+			$prevPostId = $_SESSION['prevPostId'];
+			$prevPost = Post::where("id",$prevPostId)->get();
+			$prevPost[0]->next_post = 0;
+			$prevPost[0]->save();
+			unset($_SESSION['prevPostId']);
+			return View::make('includes.decorator')->nest('contentView', 'addContent', $data);
+		}
 		$imageUrl = Input::get('imageUrl');
 		$imagePathArr = explode("/",$imageUrl);
 		$fileName = $imagePathArr[count($imagePathArr)-1];
@@ -108,6 +122,7 @@ class ContentController extends BaseController {
 			$rankCounter = $rankCounter+1;
 			Log::debug("Tag name = ".$tagName);
 			$id = $tm->findOrCreateTag($tagName);
+			
 			Log::debug("Tag id: ".$id);
 			$postTagRank = new Posttagrank();
 			$postTagRank->post_id = $post->id;
@@ -116,7 +131,31 @@ class ContentController extends BaseController {
 			$postTagRank->save();
 		  }
 		}
-		$data = array("message"=>"Post Saved. You may add more posts.");
+		$prevPostId = 0;
+		$tag = Tag::where("id",$id)->get();
+		if($actionPerformed == "post"){
+			$data = array("message"=>"Post Saved. You may add more posts.");
+			$_SESSION['actionPerformed'] = $actionPerformed;
+			unset($_SESSION['postkeys']);
+			$tag[0]->tag_type = "post";
+			$tag[0]->save();
+		}else{
+			$tag[0]->tag_type = "story";
+			$tag[0]->save();
+			$data = array("message"=>"Add Story");
+			$_SESSION['actionPerformed'] = "addStories";
+			if(!isset( $_SESSION['postkeys'] )){
+				$_SESSION['postkeys'] = $post->post_key;
+			}else{
+				$prevPostId = $_SESSION['prevPostId'];
+				$prevPost = Post::where("id",$prevPostId)->get();
+				$prevPost[0]->next_post = $post->post_key;
+				$prevPost[0]->save();
+				$postkeys = $_SESSION['postkeys'];
+				$_SESSION['postkeys'] = $postkeys.','.$post->post_key;
+			}
+			$_SESSION['prevPostId'] = $post->id;
+		}
 		return View::make('includes.decorator')->nest('contentView', 'addContent', $data);
 	}
 
@@ -180,6 +219,15 @@ class ContentController extends BaseController {
 
 		//First see if there are other posts related to the same tag
 		$post = Post::where('post_key', '=', $key)->first();
+		if($post->next_post != null){
+		    if($post->next_post == 0){
+			  echo "Story Ended";
+			  return View::make('postView')->with("post", $post);
+			}
+			$post = Post::where('post_key', '=', $post->next_post)->first();
+			return View::make('postView')->with("post", $post);
+		}
+		
 		$tags = $post->tags()->get();
 		Log::debug("Tags: ".$tags);
 		//Log::debug("Session data: ".implode(Session::get('displayedKeys')));
@@ -221,11 +269,18 @@ class ContentController extends BaseController {
 	public function getTags($key=NULL){
 		//Going to use this array like a map to ensure uniqueness of keys
 		$tags = array();
+		$storyTag = array();
+		session_start();
 		if($key){
 			Log::debug("Looking for tags for key: ".$key);
 			$post = Post::where("post_key",$key)->first();
 			foreach ($post->tags()->get() as $tag){
-				$tags[$tag->name]=$tag;
+				if($tag->tag_type == "story"){
+				   $storyTag[$tag->name]=$tag;
+				}else{
+				   $tags[$tag->name]=$tag;
+				};
+				
 			}
 		}
 		Log::debug("Related tag count: ".count($tags));
@@ -236,7 +291,12 @@ class ContentController extends BaseController {
 				foreach ($tagRelations as $tagRel){
 					$toTags = $tagRel->toTags()->get();
 					foreach ($toTags as $toTag){
-						$tags[$toTag->name]=$toTag;
+					  if($genTag->tag_type == "story"){
+					   $storyTag[$toTag->name]=$toTag;
+					  }else{
+					   $tags[$toTag->name]=$toTag;
+					  };
+						
 					}
 				}
 			}
@@ -246,9 +306,15 @@ class ContentController extends BaseController {
 			Log::debug("Adding more tags to list from system");
 			$generalTags = Tag::take(count($tags)-10)->get();
 			foreach ($generalTags as $genTag){
-				$tags[$genTag->name]=$genTag;
+			    if($genTag->tag_type == "story"){
+				   $storyTag[$genTag->name]=$genTag;
+				}else{
+				   $tags[$genTag->name]=$genTag;
+				};
+				
 			}
 		}
+		$_SESSION['storyTag'] = $storyTag;
 		return View::make('tags')->with("tags", $tags);
 	}
 	public function getTagRelations($key=NULL){
@@ -361,10 +427,10 @@ class ContentController extends BaseController {
         $tid = Input::get('tid');
 		$posttagrank = Posttagrank::where("post_id",$pid)->get();
 		$posttagrank[0]->delete();
-		$tag = Tag::where("id",$tid)->get();
-		$tag[0]->delete();
-        $post = Post::where("id",$pid)->get();
-        $post[0]->delete();
+		//$tag = Tag::where("id",$tid)->get();
+		//$tag[0]->delete();
+        //$post = Post::where("id",$pid)->get();
+       // $post[0]->delete();
 	}
 	
 	public function saveApprovedContent(){

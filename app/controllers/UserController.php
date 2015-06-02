@@ -60,7 +60,7 @@ class UserController extends BaseController {
 		$mail->SMTPDebug  = 2;
 		$mail->SetFrom('support@flikbuk.com', 'Flikbuk');;
 		$mail->AddAddress($mailId);
-		$mail->Subject  = "Flikbuk Password Reset";
+		$mail->Subject  = "Flikbuk- Reset you password";
 		$mail->MsgHTML($message);
 		$mail->WordWrap = 50;
 		
