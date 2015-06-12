@@ -38,44 +38,22 @@ function turnNextPage(){
     </script>
 
 <body>
-<div class="top">
+
+<!--<div class="bottom">
 </div>
-<div class="container">
+-->
+
+<div class="container-fluid">
 <div class="row">
-	<!-- Logo -->
-	<div class="col-md-3 logobrand">
+	 <!-- Logo -->
+	<div class="col-md-2 logobrand">
     <img src="img/logo.png" />
     </div>
-	<!-- 1. Search -->	 
-	<div class="col-md-9 form">
-		<form action="" name="form" id="form" style="margin-left:0px;margin-top:0px; float:right">
-			<input type="text" name="search" id="search" size="50" class="sreachtab"/>
-			<input type="button" value="" onClick="searchTag()" class="searchbtn" />
-		</form>
-	</div>
-</div>
-</div>
-<div class="bottom">
-</div>
-
-
-<div class="middle">
-<div class="container-fluid"><div class="row">
-	 <div class="col-md-2">
-	 <div class="logpanel">
-	<a href="/addContent" style="text-decoration: none;">
-	<h1 style="border-radius: 6px; width:176px;font-family: Audiowide,cursive; font-size: 18px;"> Contribute </h1></a>
-    <!-- <div class="add"></div> -->
-	 </div>
-	 </div>
 	<div class="imagePanel col-md-8 banner">
 		<div id="flipbook">
 			<div  style="background: white;">
 				<?php include 'postView.php'?>
-                <img id="img1" src="img/img1.jpg" height="600" width="900">
-                <div class="caption">
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-                </div>
+                
 			</div>
 		</div>
         
@@ -90,11 +68,26 @@ function turnNextPage(){
             
 		</div>
 	</div>
-</div></div>
 </div>
+	</div>
+
 
 <!-- Rating, facebook, twitter and copy -->
 <div class="row">
+<!-- 1. Search -->	 
+	<div class="col-md-2 form">
+		<form action="" name="form" id="form" style="margin-left: 10px; margin-top: -658px; float:right">
+			<input type="text" name="search" id="search" size="20" class="sreachtab"/>
+			<input type="button" style="margin-right: -35px;" value="" onClick="searchTag()" class="searchbtn" />
+		</form>
+	</div>
+	<div class="col-md-2">
+	 <div class="logpanel">
+	<a href="/addContent" style="text-decoration: none;">
+	<h1 style="border-radius: 6px; width:176px;font-family: Audiowide,cursive; font-size: 18px;margin-left: -210px;margin-top: -64px;"> Contribute </h1></a>
+    <!-- <div class="add"></div> -->
+	 </div>
+	 </div>
 	<div class="stars">
 		<input type="hidden" id="ratingVal" value="0"></input>
 		<div id="ratingTable">
@@ -117,6 +110,7 @@ function turnNextPage(){
 <div class="footer">
 <div class="container">
 <div class="row">
+
 <!-- Facebook Share Button below images
 			<span class="fb-share-button" data-href="" data-layout="button"></span>-->
 		<!-- Twitter Button below images
@@ -125,12 +119,14 @@ function turnNextPage(){
 		<!--  Button to copy the image link below images
 		<button id="copy-button">Copy Link</button>-->
         <div class="socialicon">
+		
         <div class="social" ><a class="socialicon1" href="https://www.facebook.com/login.php?next=https%3A%2F%2Fwww.facebook.com%2Fsharer%2Fsharer.php%3Fapp_id%3D309437425817038%26sdk%3Djoey%26u%3Dhttp%253A%252F%252Fwww.flikbuk.com%252F%26display%3Dpopup%26ref%3Dplugin%26src%3Dshare_button%26ret%3Dlogin&display=popup" target="_blank"></a></div>
         <div class="social"><a class="socialicon2" href="https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Fwww.flikbuk.com%2F&related=twitterdev&text=Flikbuk&tw_p=tweetbutton&url=http%3A%2F%2Fwww.flikbuk.com%2F" target="_blank"></a></div>
         <div class="social"><a class="socialicon3" href="#" target="_blank"></a></div>
         <div class="social"><a class="socialicon4" href="#" target="_blank"></a></div>
         <div class="social"><a class="socialicon5" href="#" target="_blank"></a></div>
         </div>
+		
 </div>
 </div>
 </div>
