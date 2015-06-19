@@ -44,7 +44,7 @@ body{ margin:0 auto; }
 .clearfix{ clear:both;}
 .container {  width: 1170px; margin:0 auto;}
 .top{background:#494949; height:37px; width:100%; position:relative; }
-.logobrand img{ float:left; position:absolute; margin-top:6px;}
+.logobrand img{ float:left; position:absolute; margin-top:0px;}
 .bottom{background:#494949; height:5px; width:100%; }
 .form{ padding-top:20px; padding-bottom:17px;}
 .sreachtab{ background:#dfdddd; border:1px solid #ffb0b0; height:38px; width:82%}
