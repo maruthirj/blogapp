@@ -23,6 +23,8 @@ $(document).ready(function(){
 		var title = "Flikbuk:: "+$("div.p"+page+" input[name='title']").val();
 		document.title = title;
 		window.history.pushState({"html":"","pageTitle":''},"", key);
+		//Update google analytics to track the page turns
+		ga('set', 'page', '/'+key);
 		addNewPages();
 	});
 	$(".tags").load("/tags");
