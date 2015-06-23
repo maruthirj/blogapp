@@ -215,24 +215,28 @@ th, td {
 <?php 
 $userId = Auth::id();
 $user = User::where("id",$userId)->get();
-//echo $user;
-$results = array(DB::select('select p.id as pid,p.post_key,p.title,p.post_text,p.flag,t.id as tid,t.name from posts p join posttagranks pt on p.id=pt.post_id
- join tags t on pt.tag_id=t.id where p.flag=0 AND p.user_id=?' ,array($userId)));
-foreach($results as $data){
-  foreach($data as $value){
-	$postk=$value->post_key;
-	echo '<tr>';
-    echo '<td><img src="/img/content/'.$postk.'" alt="" style="width:82px; height:60px;"></td>';
-	echo '<td>'.$value->title.'</td>';
-	echo '<td>'.$value->post_text.'</td>';
-	echo '<td>'.$value->name.'</td>';
-	echo '<td><a href="#" onclick="approveContent(\''.$value->pid.'\')">Approve Post</a></td>';
-	echo '<td><a href="#" onclick="deleteContent(\''.$value->pid.'\',\''.$value->tid.'\')">Delete</a></td>';
-	echo '<td>'.$user[0]->email.'</td>';
-	echo '</tr>';
-   
-  }
+Log::debug("User mail id: ".$user[0]->email);
+if($user[0]->email == "maruthi@leviossa.com"){
+	$results = array(DB::select('select p.id as pid,p.post_key,p.title,p.post_text,p.flag,t.id as tid,t.name from posts p join posttagranks pt on p.id=pt.post_id
+	 join tags t on pt.tag_id=t.id where p.flag=0 AND p.user_id=?' ,array($userId)));
+	foreach($results as $data){
+	  foreach($data as $value){
+		$postk=$value->post_key;
+		echo '<tr>';
+		echo '<td><img src="/img/content/'.$postk.'" alt="" style="width:82px; height:60px;"></td>';
+		echo '<td>'.$value->title.'</td>';
+		echo '<td>'.$value->post_text.'</td>';
+		echo '<td>'.$value->name.'</td>';
+		echo '<td><a href="#" onclick="approveContent(\''.$value->pid.'\')">Approve Post</a></td>';
+		echo '<td><a href="#" onclick="deleteContent(\''.$value->pid.'\',\''.$value->tid.'\')">Delete</a></td>';
+		echo '<td>'.$user[0]->email.'</td>';
+		echo '</tr>';
+	   
+	  }
+	}
 }
+//echo $user;
+
 ?>
 </table>
  </div>
