@@ -185,7 +185,13 @@ class ContentController extends BaseController {
 				$tag->save();
 			}
 			//code to save rank ends
-			$post = $tag->posts()->first();
+			$posts = $tag->posts()->get();
+			foreach ($posts as $postObj){
+			   if($postObj->flag == 1){
+				$post = $postObj;
+				break;
+			   }
+			}
 		}else if(strlen($searchStr)!=0){
 			Log::debug("Key search");
 			$post = Post::where('post_key', 'like', $searchStr."%")->first();
@@ -211,10 +217,7 @@ class ContentController extends BaseController {
 		   $_SESSION['displayedKeys'] = array();
 		}
 		$keysArray = $_SESSION['displayedKeys'];
-		//echo "sesion array".implode($keysArray)."...<br/>";
-		//echo "key ".$key."<br/>";
 		$keysArray[$key]='true';						//Mark this key as displayed by adding it here
-		//echo "local array".implode($keysArray)."...<br/>";
 		$_SESSION['displayedKeys'] = $keysArray;
 
 		//First see if there are other posts related to the same tag
@@ -230,14 +233,15 @@ class ContentController extends BaseController {
 		
 		$tags = $post->tags()->get();
 		Log::debug("Tags: ".$tags);
-		//Log::debug("Session data: ".implode(Session::get('displayedKeys')));
 
 		$relatedPosts = array();
 		foreach ($tags as $tag)
 		{
 			$posts = $tag->posts()->get();
 			foreach ($posts as $post){
-				array_push($relatedPosts,$post);
+			   if($post->flag == 1){
+				 array_push($relatedPosts,$post);
+				}
 			}
 		}
 
@@ -251,7 +255,14 @@ class ContentController extends BaseController {
 			return View::make('postView')->with("post", $relPost);
 		}
 		//If a related post not found, find any other post
-		$postFound = Post::whereNotIn('post_key', array_keys($keysArray))->first();
+		$postFound = "";
+		$postArr = Post::whereNotIn('post_key', array_keys($keysArray))->get();
+		foreach ($postArr as $postObj){
+		   if($postObj->flag == 1){
+			$postFound = $postObj;
+			break;
+		   }
+		}
 		Log::debug("Post found: ".$postFound);
 		if(!$postFound){
 			echo "post not found";
@@ -314,8 +325,29 @@ class ContentController extends BaseController {
 				
 			}
 		}
-		$_SESSION['storyTag'] = $storyTag;
-		return View::make('tags')->with("tags", $tags);
+		$tagArr = array();
+		foreach ($tags as $tag){
+			$posts = $tag->posts()->get();
+			foreach ($posts as $post){
+			   if($post->flag == 1){
+				 array_push($tagArr,$tag);
+				 break;
+				}
+			}
+		}
+		$storyTagArr = array();
+		foreach ($storyTagArr as $tag){
+			$posts = $tag->posts()->get();
+			foreach ($posts as $post){
+			   if($post->flag == 1){
+				 array_push($storyTagArr,$tag);
+				 break;
+				}
+			}
+		}
+		
+		$_SESSION['storyTag'] = $storyTagArr;
+		return View::make('tags')->with("tags", $tagArr);
 	}
 	public function getTagRelations($key=NULL){
 		$tags = Tag::all();
@@ -366,7 +398,6 @@ class ContentController extends BaseController {
 	public function createTagsRelations($key=NULL){
 		$tagIds = Input::get('tagIds');
 		$arr = explode(",",$tagIds);
-		echo "Test".count($arr);
 		for($i=0;$i<count($arr); $i++){
 			$fromId = $arr[$i];
 			foreach ($arr as $value) {
@@ -436,9 +467,9 @@ class ContentController extends BaseController {
 	public function saveApprovedContent(){
 		$pid = Input::get('pid');
 		Log::info("pid -----------------------------------------------------------------: ".$pid);
-		$post = Post::where("id",$pid)->get();
-		$post[0]->flag = 1;
-		$post[0]->save();
+		$posttagrank = Posttagrank::where("post_id",$pid)->get();
+		$posttagrank[0]->flag = 1;
+		$posttagrank[0]->save();
 	}
 }
 ?>
