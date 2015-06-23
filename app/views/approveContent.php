@@ -217,8 +217,7 @@ $userId = Auth::id();
 $user = User::where("id",$userId)->get();
 Log::debug("User mail id: ".$user[0]->email);
 if($user[0]->email == "maruthi@leviossa.com"){
-	$results = array(DB::select('select p.id as pid,p.post_key,p.title,p.post_text,p.flag,t.id as tid,t.name from posts p join posttagranks pt on p.id=pt.post_id
-	 join tags t on pt.tag_id=t.id where p.flag=0 AND p.user_id=?' ,array($userId)));
+	$results = array(DB::select('select p.id as pid,p.post_key,p.title,p.post_text,p.flag,t.id as tid,t.name from posts p join posttagranks pt on p.id=pt.post_id join tags t on pt.tag_id=t.id where p.flag=0'));
 	foreach($results as $data){
 	  foreach($data as $value){
 		$postk=$value->post_key;
