@@ -64,11 +64,11 @@ if(isset($_SESSION['actionPerformed'])){
  }
  ?>
  <body onload="hideForm()">
-<form name="addContent" id="addContent" action="saveContent" method="post" enctype="multipart/form-data" onsubmit="return validateSubmit();">
+<form name="addContent" id="addContent" action="saveContent" method="post" enctype="multipart/form-data">
   <div class="container addContent">
     <div class="row">
       <div class="col-md-12"><label>Title:</label>
-        <input id="titleText" type="text" class="loginTxtbx" name="title"/>
+        <input id="titleText" type="text" class="loginTxtbx" name="title" required/>
       </div>
       <div class="col-md-12"><label>Related Tags:</label>
         <input class="loginTxtbx" type="text" name="addTag" id="addTagTxt"/>
@@ -84,7 +84,7 @@ if(isset($_SESSION['actionPerformed'])){
   <div class="row">
     <!-- Post Text -->
     <div class="col-md-12"><label>Post Text:</label>
-      <textarea rows="3" cols="80" name="postText" id="postText"></textarea>
+      <textarea rows="3" cols="80" name="postText" id="postText" maxlenght="100" required></textarea>
     </div>
   </div>
   <div class="row">
@@ -105,10 +105,10 @@ if(isset($_SESSION['actionPerformed'])){
 	  <input type="hidden" id="actionPerformed" name="actionPerformed" value="">
      <p> By posting this content, you here by state and agree that you are not performing any kind of copyright violation with respect to this content. Copyright violations could lead to suspension of your account on this site. ALL CONTENT WILL BE MODERATED before it is available for public viewing to make sure that the content is not abusive/offensive or voilate norms of this site.</p>
 	 <div class="col-md-1">
-      <p><input type="submit" value="Post It!" id="postBtn" onclick="upload('post')" class="btnLogin"/></p>
+      <p><input type="submit" value="Post It!" id="postBtn" onclick="return upload('post')" class="btnLogin"/></p>
     </div>
 	<div class="col-md-4">
-		<p><input type="submit" value="Make Story!" onclick="upload('addStories')" class="btnLogin"/></p>
+		<p><input type="submit" value="Make Story!" onclick="return upload('addStories')" class="btnLogin"/></p>
 	</div>
   </div>
 
@@ -118,8 +118,28 @@ if(isset($_SESSION['actionPerformed'])){
 </body>
 <script type="text/javascript">
  function upload(val){
+    if($("#titleText").val()==""){
+	  return true;
+	}
+    if($("#hiddenFieldsDiv input").size()==0){
+		alert("Please add atleast one tag to this post");
+		$("#addTagTxt").focus();
+		return false;
+	}
+	if($("#postText").val()==""){
+	  return true;
+	}
+	if($("#postText").val().length < 30){
+	  alert("Post Text length should be greater than 30.");
+	  $("#postText").focus();
+	  return false;
+	}
+	if($("#uploadedUrl").val()==""){
+		alert("Please upload image and click the green crop icon before posting.");
+		return false;
+	}
    document.getElementById("actionPerformed").value= val;
-   document.getElementById("addContent").submit();
+   return true;
  }
  function next(){
    document.getElementById("addContent").style.display = "block"
