@@ -64,7 +64,7 @@ if(isset($_SESSION['actionPerformed'])){
  }
  ?>
  <body onload="hideForm()">
-<form name="addContent" id="addContent" action="saveContent" method="post" enctype="multipart/form-data">
+<form name="addContent" id="addContent" action="saveContent" method="post" enctype="multipart/form-data" onsubmit="return validateSubmit();">
   <div class="container addContent">
     <div class="row">
       <div class="col-md-12"><label>Title:</label>
@@ -84,7 +84,7 @@ if(isset($_SESSION['actionPerformed'])){
   <div class="row">
     <!-- Post Text -->
     <div class="col-md-12"><label>Post Text:</label>
-      <textarea rows="3" cols="80" name="postText" id="postText" maxlenght="100"></textarea>
+      <textarea rows="3" cols="80" name="postText" id="postText"></textarea>
     </div>
   </div>
   <div class="row">
@@ -105,7 +105,7 @@ if(isset($_SESSION['actionPerformed'])){
 	  <input type="hidden" id="actionPerformed" name="actionPerformed" value="">
      <p> By posting this content, you here by state and agree that you are not performing any kind of copyright violation with respect to this content. Copyright violations could lead to suspension of your account on this site. ALL CONTENT WILL BE MODERATED before it is available for public viewing to make sure that the content is not abusive/offensive or voilate norms of this site.</p>
 	 <div class="col-md-1">
-      <p><input type="submit" value="Post It!" id="postBtn" onclick="return upload('post')" class="btnLogin"/></p>
+      <p><input type="submit" value="Post It!" id="postBtn" onclick="upload('post')" class="btnLogin"/></p>
     </div>
 	<div class="col-md-4">
 		<p><input type="submit" value="Make Story!" onclick="upload('addStories')" class="btnLogin"/></p>
@@ -118,9 +118,6 @@ if(isset($_SESSION['actionPerformed'])){
 </body>
 <script type="text/javascript">
  function upload(val){
-	if(!validateSubmit()){
-		return false;
-	}
    document.getElementById("actionPerformed").value= val;
    document.getElementById("addContent").submit();
  }
