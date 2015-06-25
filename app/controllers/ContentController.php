@@ -467,9 +467,10 @@ class ContentController extends BaseController {
 	public function saveApprovedContent(){
 		$pid = Input::get('pid');
 		Log::info("pid -----------------------------------------------------------------: ".$pid);
-		$posttagrank = Posttagrank::where("post_id",$pid)->get();
-		$posttagrank[0]->flag = 1;
-		$posttagrank[0]->save();
+		$post = Post::where("id",$pid)->get();
+        $post[0]->flag = 1;
+        $post[0]->save();
+
 	}
 }
 ?>
