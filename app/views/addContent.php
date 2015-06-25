@@ -84,7 +84,7 @@ if(isset($_SESSION['actionPerformed'])){
   <div class="row">
     <!-- Post Text -->
     <div class="col-md-12"><label>Post Text:</label>
-      <textarea rows="3" cols="80" name="postText" id="postText" maxlenght="100" required></textarea>
+      <textarea rows="3" cols="80" name="postText" id="postText" maxlenght="300" required></textarea>
     </div>
   </div>
   <div class="row">
@@ -129,8 +129,8 @@ if(isset($_SESSION['actionPerformed'])){
 	if($("#postText").val()==""){
 	  return true;
 	}
-	if($("#postText").val().length < 30){
-	  alert("Post Text length should be greater than 30.");
+	if($("#postText").val().length < 120){
+	  alert("Post Text length should be greater than 30 words.");
 	  $("#postText").focus();
 	  return false;
 	}
