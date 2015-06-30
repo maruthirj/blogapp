@@ -46,7 +46,7 @@ if (typeof(twttr.widgets) != 'undefined' && twttr.widgets != null ) {
 <div>
 <input type="hidden" value="http://<?php echo $_SERVER['HTTP_HOST']?>/<?php echo $post->post_key?>" name="postLink" id="postLinkInput"/>
 </div>
-<div  style="margin-top:60px;margin-left:622px;">
+<div  style="margin-top:10px;margin-left:622px;">
 
 <!-- Facebook Share Button below images
 			<span class="fb-share-button" data-href="" data-layout="button"></span>-->
