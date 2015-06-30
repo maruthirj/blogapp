@@ -336,7 +336,7 @@ class ContentController extends BaseController {
 			}
 		}
 		$storyTagArr = array();
-		foreach ($storyTagArr as $tag){
+		foreach ($storyTag as $tag){
 			$posts = $tag->posts()->get();
 			foreach ($posts as $post){
 			   if($post->flag == 1){
@@ -345,8 +345,13 @@ class ContentController extends BaseController {
 				}
 			}
 		}
-		
+		if(count($storyTagArr)>5){
+			$storyTagArr = array_slice($storyTagArr, 0, 5);
+		}
 		$_SESSION['storyTag'] = $storyTagArr;
+		if(count($tagArr)>30){
+			$tagArr = array_slice($tagArr, 0, 30);
+		}
 		return View::make('tags')->with("tags", $tagArr);
 	}
 	public function getTagRelations($key=NULL){
