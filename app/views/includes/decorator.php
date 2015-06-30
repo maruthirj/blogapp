@@ -32,10 +32,11 @@
 	<link rel="stylesheet" href="css/bootstrap/bootstrap-theme.min.css">
 	<script src="scripts/js/jquery.min.js"></script>
 	<script src="scripts/js/bootstrap/bootstrap.min.js"></script>
-	<script src="scripts/js/jquery.ui.autocomplete.js" type="text/javascript"></script>
+	
 	
 	<script src="scripts/js/jquery.js" type="text/javascript"></script>
 	<script src="scripts/js/jquery-ui-custom.min.js" type="text/javascript"></script>
+	<script src="scripts/js/jquery.ui.autocomplete.js" type="text/javascript"></script>
 	<script src="scripts/js/jquery.layout.js" type="text/javascript"></script>
 	<script src="scripts/js/grid.locale-en.js" type="text/javascript"></script>
 	
