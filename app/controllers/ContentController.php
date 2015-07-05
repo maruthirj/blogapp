@@ -257,12 +257,17 @@ class ContentController extends BaseController {
 		//If a related post not found, find any other post
 		$postFound = "";
 		$postArr = Post::whereNotIn('post_key', array_keys($keysArray))->get();
-		foreach ($postArr as $postObj){
-		   if($postObj->flag == 1){
-			$postFound = $postObj;
-			break;
-		   }
+		$postSize = sizeof($postArr);
+		$randIndex = rand(0,$postSize-1);
+		$attempts=0;
+		Log::debug("Post size: ".$postSize." Rand index: ".$randIndex);
+		while ($postArr[$randIndex]->flag != 1) {
+			$randIndex = rand(0,$postSize);
+			$attempts+=1;
+			if($attempts==100)//Give up
+				break;
 		}
+		$postFound = $postArr[$randIndex];
 		Log::debug("Post found: ".$postFound);
 		if(!$postFound){
 			echo "post not found";

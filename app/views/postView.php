@@ -33,7 +33,6 @@
 				<span style="float: left;"><img id="img5" src="img/star_empty.png"
 					onMouseOver="fillImg(5)" onMouseOut="normalImg(5)"
 					onClick="giveRating(5)" height="42" width="42"></span>
-			
 	</div>	
 	<input type="hidden" value="http://<?php echo $_SERVER['HTTP_HOST']?>/<?php echo $post->post_key?>" name="postLink" id="postLinkInput"/>
 </div>
@@ -46,6 +45,7 @@ if(pageCollection.size()>0){
 	if(document.getElementById("ratingVal") != null){
 		document.getElementById("ratingVal").value=rating;
 	}
+	//This code has to change. ratingTable is gone
 	if(document.getElementById("ratingTable") != null){
 		if(rating!=""){
 			document.getElementById("ratingTable").style.display="none";
