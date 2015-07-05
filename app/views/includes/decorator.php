@@ -58,7 +58,7 @@
 	</script>
 </head>
 <body>
-<div class="container-full">
+<div class="container-fluid">
 <?php echo $contentView; ?>
 </div>
 </body>

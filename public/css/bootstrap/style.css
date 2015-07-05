@@ -23,7 +23,7 @@ body{ margin:0 auto; }
 .logobrand img{ float:left; position:absolute; margin-top:-20px;}
 .bottom{background:#494949; height:5px; width:100%; margin-top:37px; }
 .form{ padding-top:20px; padding-bottom:17px;}
-.sreachtab{ background:#dfdddd; border:1px solid #ffb0b0; height:38px; width:82%}
+.sreachtab{ background:#dfdddd; border:1px solid #ffb0b0;}
 .searchbtn{ background:url(../../img/search.jpg) no-repeat; margin-left:20px; margin-top:0px; float:right; height:38px; width:49px; border:none; cursor:pointer;}
 .banner{ margin-left:0%; }
 .banner1{ margin-left:40%; }

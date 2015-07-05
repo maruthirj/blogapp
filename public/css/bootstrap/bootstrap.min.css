@@ -47,8 +47,8 @@ body{ margin:0 auto; }
 .logobrand img{ float:left; position:absolute; margin-top:0px;}
 .bottom{background:#494949; height:5px; width:100%; }
 .form{ padding-top:20px; padding-bottom:17px;}
-.sreachtab{ background:#dfdddd; border:1px solid #ffb0b0; height:38px; width:82%}
-.searchbtn{ background:url(../../img/search.jpg) no-repeat; margin-left:0px; margin-top:0px; float:right; height:38px; width:65px; border:none; cursor:pointer;}
+.sreachtab{ background:#dfdddd; border:1px solid #ffb0b0; margin-top: 18px}
+.searchbtn{ background:url(../../img/search.jpg) no-repeat; margin-left:0px; margin-top:10px; float:right; height:38px; width:45px; border:none; cursor:pointer;}
 .banner{ margin-left:0%; }
 .banner1{ margin-left:40%; }
 .banner h1{ color:#ec3a3e; font-size:26px; font-family: 'Audiowide', cursive;}
@@ -160,7 +160,7 @@ h1{  font-size: 20px;
     font-size: 16px;   }
 	.tags span:nth-child(15){  float: left; 
     font-size: 10px;   }
-.shadow{height:750px !important; width:100% !important; max-width:900px !important;}
+.shadow{height:800px !important; width:100% !important; max-width:900px !important;}
 .shadow img{width:100% !important; max-width:900px !important;}
 .wTxt{color:#FF4E4E;}
 

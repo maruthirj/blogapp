@@ -1,20 +1,14 @@
 <script type="text/javascript" src="/scripts/welcome.js"></script>
 <!--<link href="img/style.css" rel="stylesheet">-->
-<link href='http://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Audiowide'
+	rel='stylesheet' type='text/css'>
 
 <!--<link href="../../public/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">-->
 
-<script type="text/javascript">
-	$("#flipbook").turn({
-		width: 400,
-		height: 300,
-		autoCenter: true
-	});
-</script>
 
 <script src="/scripts/tagcanvas.min.js" type="text/javascript"></script>
-    <script type="text/javascript">
-      window.onload = function() {
+<script type="text/javascript">
+      $(document).ready(function(){
         try {
           TagCanvas.Start('myCanvas','tags',{
             textColour: '#ff0000',
@@ -29,93 +23,59 @@
 			document.getElementById('myCanvasContainer').style.display = 'none';
 		  }
         }
-      };
-function turnPrevPage(){
-	$("#flipbook").turn("previous");
-}
+      });
+	function turnPrevPage(){
+		$("#flipbook").turn("previous");
+	}
+	
+	function turnNextPage(){
+		$("#flipbook").turn("next");
+	}
+</script>
 
-function turnNextPage(){
-	$("#flipbook").turn("next");
-}
-    </script>
-
-<body>
-
-<!--<div class="bottom">
-</div>
--->
-
-<div class="container-fluid">
 <div class="row">
-	 <!-- Logo -->
-	<div class="col-md-2 logobrand">
-    <img src="img/logo.png" />
-    </div>
+	<!-- Logo -->
+	<div class="col-md-2">
+		<img src="img/logo.png" />
+		<!-- 1. Search -->
+		<form action="" name="form" id="form">
+			<input type="text" name="search" id="search" class="sreachtab" /> <input
+				type="button" value="" onClick="searchTag()" class="searchbtn" />
+		</form>
+		<a href="/addContent" style="text-decoration: none;">
+			<h1>Contribute</h1>
+		</a>
+	</div>
 	<div class="imagePanel col-md-8 banner">
 		<div id="flipbook">
-			<div  style="background: white;">
-				<?php include 'postView.php'?>
-                
+			<div style="background: white;">
+			<?php include 'postView.php'?>
 			</div>
 		</div>
-        
-        <div class="controlBtn"><div class="left"><img src="img/left.jpg" onclick="turnPrevPage()"/></div>
-        <div class="right"><img src="img/right.jpg" onclick="turnNextPage()"/></div></div>
+
+		<div class="controlBtn">
+			<div class="left">
+				<img src="img/left.jpg" onclick="turnPrevPage()" />
+			</div>
+			<div class="right">
+				<img src="img/right.jpg" onclick="turnNextPage()" />
+			</div>
+		</div>
 	</div>
 	<!-- Tags -->
 	<div class="col-md-2 clouds">
 		<div class="tags">
-			
-            <img src="img/hr.png" />
-            
+
+			<img src="img/hr.png" />
+
 		</div>
 	</div>
 </div>
-	</div>
 
 
-<!-- Rating, facebook, twitter and copy -->
-<div class="row">
-<!-- 1. Search -->	 
-	<div class="col-md-2 form">
-		<form action="" name="form" id="form" style="margin-left: 10px; margin-top: -658px; float:right">
-			<input type="text" name="search" id="search" size="20" class="sreachtab"/>
-			<input type="button" style="margin-right: -35px;" value="" onClick="searchTag()" class="searchbtn" />
-		</form>
-	</div>
-	<div class="col-md-2">
-	 <div class="logpanel">
-	<a href="/addContent" style="text-decoration: none;">
-	<h1 style="border-radius: 6px; width:176px;font-family: Audiowide,cursive; font-size: 18px;margin-left: -210px;margin-top: -64px;"> Contribute </h1></a>
-    <!-- <div class="add"></div> -->
-	 </div>
-	 </div>
-	<div class="stars">
-		<input type="hidden" id="ratingVal" value="0"></input>
-		<div id="ratingTable">
-			<span><img id="img1" src="img/star_empty.png" onMouseOver="fillImg(1)" onMouseOut="normalImg(1)" 
-				onClick="giveRating(1)" height="42" width="42"></span>
-			<span><img id="img2" src="img/star_empty.png" onMouseOver="fillImg(2)" onMouseOut="normalImg(2)" 
-				onClick="giveRating(2)" height="42" width="42"></span>
-			<span><img id="img3" src="img/star_empty.png" onMouseOver="fillImg(3)" onMouseOut="normalImg(3)" 
-				onClick="giveRating(3)" height="42" width="42"></span>
-			<span><img id="img4" src="img/star_empty.png" onMouseOver="fillImg(4)" onMouseOut="normalImg(4)" 
-				 onClick="giveRating(4)" height="42" width="42"></span>
-			<span><img id="img5" src="img/star_empty.png" onMouseOver="fillImg(5)" onMouseOut="normalImg(5)" 
-				onClick="giveRating(5)" height="42" width="42"></span>
-			<!-- Facebook Share Button below images-->
-			<!--<span class="fb-share-button" data-href="" data-layout="button"></span>-->
-		</div>
-	</div>
-</div>
-<div class="clearfix"></div>
-<div class="footer">
-<div class="container">
-</div>
-</div>
 
 <script type="text/javascript">
-function searchTag(){
+	function searchTag(){
 	   var form = document.getElementById("form");
 	   form.action = "/tag="+document.getElementById("search").value;
 	   form.submit();
@@ -172,7 +132,7 @@ function searchTag(){
 			});
 			document.getElementById("ratingTable").style.display="none";
 		}
-		}
+	}
 		
 	function fillImg(imgNo) {
 	    var ratingVal = document.getElementById("ratingVal").value;
@@ -198,4 +158,3 @@ function searchTag(){
 		}
 	}
 </script>
-</body>
