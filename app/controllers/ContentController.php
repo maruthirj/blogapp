@@ -308,9 +308,9 @@ class ContentController extends BaseController {
 					$toTags = $tagRel->toTags()->get();
 					foreach ($toTags as $toTag){
 					  if($genTag->tag_type == "story"){
-					   $storyTag[$toTag->name]=$toTag;
+					   	$storyTag[$toTag->name]=$toTag;
 					  }else{
-					   $tags[$toTag->name]=$toTag;
+					   	$tags[$toTag->name]=$toTag;
 					  };
 						
 					}
@@ -320,8 +320,14 @@ class ContentController extends BaseController {
 		Log::debug("Related tag count2: ".count($tags));
 		if(count($tags)<50){
 			Log::debug("Adding more tags to list from system");
-			$generalTags = Tag::take(count($tags)-10)->get();
-			foreach ($generalTags as $genTag){
+			#get all tags and pic random tags
+			$generalTags = Tag::take()->get();
+			shuffle($generalTags);
+			$count=0;
+			foreach($generalTags as $genTag){
+				if(count>(count($tags)-50))
+					break;
+				$count+=1;
 			    if($genTag->tag_type == "story"){
 				   $storyTag[$genTag->name]=$genTag;
 				}else{
