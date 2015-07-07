@@ -321,13 +321,8 @@ class ContentController extends BaseController {
 		if(count($tags)<50){
 			Log::debug("Adding more tags to list from system");
 			#get all tags and pic random tags
-			$generalTags = Tag::take()->get();
-			shuffle($generalTags);
-			$count=0;
+			$generalTags = Tag::all()->random(50);
 			foreach($generalTags as $genTag){
-				if(count>(count($tags)-50))
-					break;
-				$count+=1;
 			    if($genTag->tag_type == "story"){
 				   $storyTag[$genTag->name]=$genTag;
 				}else{
