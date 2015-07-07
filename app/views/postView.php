@@ -1,3 +1,9 @@
+<meta property="og:type"            content="article" /> 
+<meta property="og:url"             content="http://flikbuk.com/<?php echo $post->post_key?>" /> 
+<meta property="og:title"           content="<?php echo $post->title ?>" /> 
+<meta property="og:image"           content="http://flikbuk.com/img/content/<?php echo $post->post_key?>" /> 
+<meta property="og:description"     content="<?php echo $post->post_text ?>" />
+
 <input name="postKeyUrl" type="hidden" value="<?php echo $post->keyForLink() ?>"/>
 <input name="postKey" type="hidden" value="<?php echo $post->post_key ?>"/>
 <input name="title" type="hidden" value="<?php echo $post->title ?>"/>
@@ -12,6 +18,7 @@
 <div class="postText">
 <?php echo $post->post_text ?>
 	<div>
+<!-- 			<div class="fb-share-button" data-href="http://www.flikbuk.com/login" data-layout="button"></div> -->
 	        <a class="socialicon1" href="https://www.facebook.com/login.php?next=https%3A%2F%2Fwww.facebook.com%2Fsharer%2Fsharer.php%3Fapp_id%3D309437425817038%26sdk%3Djoey%26u%3Dhttp%253A%252F%252Fwww.flikbuk.com%2Fimg%2Fcontent%2F<?php echo $post->post_key ?>%26display%3Dpopup%26ref%3Dplugin%26src%3Dshare_button%26ret%3Dlogin&display=popup" target="_blank"></a>
 	        <a class="socialicon2" href="https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Fwww.flikbuk.com%2F<?php echo $post->post_key ?>&related=twitterdev&text=Flikbuk&tw_p=tweetbutton&url=http%3A%2F%2Fwww.flikbuk.com%2F" target="_blank"></a>
 			<input type="hidden" id="ratingVal" value="0"></input>
@@ -36,6 +43,14 @@
 	</div>	
 	<input type="hidden" value="http://<?php echo $_SERVER['HTTP_HOST']?>/<?php echo $post->post_key?>" name="postLink" id="postLinkInput"/>
 </div>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
 <script>
 var pageCollection = $("input[id='rating']");
