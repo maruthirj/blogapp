@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	
+	<?php 
+		$keyWithoutExtn = preg_replace("#\\..*#","",$post->post_key);
+	?>
 	<title>Flikbuk</title>
 	<meta property="og:type"            content="article" /> 
-	<meta property="og:url"             content="http://flikbuk.com/<?php echo $post->post_key?>" /> 
+	<meta property="og:url"             content="http://flikbuk.com/<?php echo $keyWithoutExtn?>" /> 
 	<meta property="og:title"           content="<?php echo $post->title ?>" /> 
 	<meta property="og:image"           content="http://flikbuk.com/img/content/<?php echo $post->post_key?>" /> 
 	<meta property="og:description"     content="<?php echo $post->post_text ?>" />
