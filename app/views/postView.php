@@ -37,7 +37,7 @@
 					onMouseOver="fillImg(5)" onMouseOut="normalImg(5)"
 					onClick="giveRating(5)" height="42" width="42"></span>
 				<a class="socialicon1" href="https://www.facebook.com/sharer/sharer.php?sdk=joey&u=http%3A%2F%2Fwww.flikbuk.com%2F<?php echo $keyWithoutExtn ?>&display=popup&ref=plugin&src=share_button" target="_blank"></a>
-	        	<a class="socialicon2" href="https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Fwww.flikbuk.com%2F<?php echo $keyWithoutExtn ?>&related=twitterdev&text=Flikbuk&tw_p=tweetbutton&url=http%3A%2F%2Fwww.flikbuk.com%2F" target="_blank"></a>
+	        	<a class="socialicon2" href="https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Fwww.flikbuk.com%2F<?php echo $keyWithoutExtn ?>&text=<?php echo $post->title ?>&tw_p=tweetbutton&url=http%3A%2F%2Fwww.flikbuk.com%2F<?php echo $keyWithoutExtn ?>" target="_blank"></a>
 </div>	
 <input type="hidden" value="http://<?php echo $_SERVER['HTTP_HOST']?>/<?php echo $post->post_key?>" name="postLink" id="postLinkInput"/>
 <div id="fb-root"></div>
