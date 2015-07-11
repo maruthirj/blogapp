@@ -1,8 +1,3 @@
-<meta property="og:type"            content="article" /> 
-<meta property="og:url"             content="http://flikbuk.com/<?php echo $post->post_key?>" /> 
-<meta property="og:title"           content="<?php echo $post->title ?>" /> 
-<meta property="og:image"           content="http://flikbuk.com/img/content/<?php echo $post->post_key?>" /> 
-<meta property="og:description"     content="<?php echo $post->post_text ?>" />
 
 <input name="postKeyUrl" type="hidden" value="<?php echo $post->keyForLink() ?>"/>
 <input name="postKey" type="hidden" value="<?php echo $post->post_key ?>"/>

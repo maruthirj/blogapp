@@ -203,7 +203,7 @@ class ContentController extends BaseController {
 			Log::debug("Post: ".$post);
 		}
 		$data = array("post"=>$post);
-		return View::make('includes.decorator')->nest('contentView', 'welcome', $data);
+		return View::make('includes.decorator', $data)->nest('contentView', 'welcome', $data);
 	}
 
 	/**
