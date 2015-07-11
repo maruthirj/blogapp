@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<?php 
+		if(isset($post)){
 		$keyWithoutExtn = preg_replace("#\\..*#","",$post->post_key);
 	?>
 	<title>Flikbuk</title>
@@ -11,6 +12,7 @@
 	<meta property="og:title"           content="<?php echo $post->title ?>" /> 
 	<meta property="og:image"           content="http://flikbuk.com/img/content/<?php echo $post->post_key?>" /> 
 	<meta property="og:description"     content="<?php echo $post->post_text ?>" />
+	<?php } ?>
 	
 	<link rel="icon" href="img/favicon.png" type="image/x-icon"/>
 	<link href="/components/jquery-ui/themes/smoothness/jquery-ui.css" type="text/css" rel="stylesheet"/>
