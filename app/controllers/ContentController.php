@@ -202,6 +202,9 @@ class ContentController extends BaseController {
 			$post = Post::orderByRaw("RAND()")->first();
 			Log::debug("Post: ".$post);
 		}
+		$user = User::where('id', '=', $post->user_id)->first();
+		$post->user = $user;
+		Log::debug("User for post: ".$user);
 		$data = array("post"=>$post);
 		return View::make('includes.decorator', $data)->nest('contentView', 'welcome', $data);
 	}
@@ -252,6 +255,9 @@ class ContentController extends BaseController {
 				continue;
 			}
 			Log::debug("Found post: ".$relPost);
+			$user = User::where('id', '=', $relPost->user_id)->first();
+			$relPost->user = $user;
+			Log::debug("User for post: ".$user);
 			return View::make('postView')->with("post", $relPost);
 		}
 		//If a related post not found, find any other post
@@ -275,6 +281,9 @@ class ContentController extends BaseController {
 			Session::put('displayedKeys',array());
 			$postFound = Post::first();
 		}
+		$user = User::where('id', '=', $postFound->user_id)->first();
+		$postFound->user = $user;
+		Log::debug("User for post: ".$user);
 		return View::make('postView')->with("post", $postFound);
 	}
 

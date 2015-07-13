@@ -39,6 +39,7 @@ if(isset($errors)){
 		<input type="submit" class="btnLogin" value="Sign Up" tabindex="5">
 	</footer>
 	</form>
+	Flikbuk is an engaging experience for one and all. Offers engrossing entertainment, appeals to intellect and raises eye brows. As a contributor, you can use this to show off your photography and knowledge at once. Coming soon on flikbuk will be a home page for yourself for your own posts.
 </div>
 </div>
 

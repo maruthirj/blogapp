@@ -42,6 +42,8 @@
 			<input type="text" name="search" id="search" class="sreachtab" /> <input
 				type="button" value="" onClick="searchTag()" class="searchbtn" />
 		</form>
+		<hr>
+		Engross and Engage the world. Show off your pictures and knowledge.
 		<a href="/addContent" style="text-decoration: none;">
 			<h1>Contribute</h1>
 		</a>
