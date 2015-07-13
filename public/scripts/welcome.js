@@ -24,8 +24,10 @@ $(document).ready(function(){
 		document.title = title;
 		window.history.pushState({"html":"","pageTitle":''},"", key);
 		//Update google analytics to track the page turns
-		ga('set', 'page', '/'+key);
-		ga('send', 'pageview');
+		ga('send', 'pageview', {
+			  'page': '/'+key,
+			  'title': title
+			});
 		addNewPages();
 	});
 	$(".tags").load("/tags");
