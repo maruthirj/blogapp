@@ -12,7 +12,7 @@ $(document).ready(function(){
 	addNewPages();
 	
 	$(document).ready(function(){
-		$("#flipbook").turn("peel", "tr");
+	$("#flipbook").turn("peel", "tr");
 	});
 	
 	
@@ -20,12 +20,11 @@ $(document).ready(function(){
 	$("#flipbook").bind("turned", function(event, page, view) {
 		//Update the page title and url
 		var key = $("div.p"+page+" input[name='postKeyUrl']").val();
-		var title = $("div.p"+page+" input[name='title']").val();
+		var title = "Flikbuk:: "+$("div.p"+page+" input[name='title']").val();
 		document.title = title;
 		window.history.pushState({"html":"","pageTitle":''},"", key);
 		//Update google analytics to track the page turns
 		ga('set', 'page', '/'+key);
-		ga('send', 'pageview');
 		addNewPages();
 	});
 	$(".tags").load("/tags");
