@@ -38,7 +38,7 @@
 	<div class="col-md-2">
 		<img src="img/logo.png" />
 		<!-- 1. Search -->
-		<form action="" name="form" id="form">
+		<form action="/" name="form" id="form">
 			<input type="text" name="search" id="search" class="sreachtab" /> <input
 				type="button" value="" onClick="searchTag()" class="searchbtn" />
 		</form>
@@ -79,7 +79,7 @@
 <script type="text/javascript">
 	function searchTag(){
 	   var form = document.getElementById("form");
-	   form.action = "/tag="+document.getElementById("search").value;
+	   //form.action = "/tag="+document.getElementById("search").value;
 	   form.submit();
 	   return false;
 	}

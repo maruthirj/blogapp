@@ -1,7 +1,7 @@
+<?php if($post==null){
+	echo "No results";
+}else{?>
 
-<input name="postKeyUrl" type="hidden" value="<?php echo $post->keyForLink() ?>"/>
-<input name="postKey" type="hidden" value="<?php echo $post->post_key ?>"/>
-<input name="title" type="hidden" value="<?php echo $post->title ?>"/>
 <div class="posttitle">
 <?php echo $post->title ?>
 </div>
@@ -11,7 +11,15 @@
 <input type="hidden" id="rating" value="<?php echo $post->overall_rating ?>"/>
 <input type="hidden" id="postId" value="<?php echo $post->id ?>"/>
 <div class="postText">
+
+<input name="postKeyUrl" type="hidden" value="<?php echo $post->keyForLink() ?>"/>
+<input name="postKey" type="hidden" value="<?php echo $post->post_key ?>"/>
+<input name="title" type="hidden" value="<?php echo $post->title ?>"/>
+
 <?php echo $post->post_text ?>
+<br>
+<span style="text-align: right; float: right; width: auto; ">Contributor: <?php echo $post->user->name ?></span>
+<br>
 </div>
 <div>
 <?php
@@ -40,6 +48,7 @@
 	        	<a class="socialicon2" href="https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Fwww.flikbuk.com%2F<?php echo $keyWithoutExtn ?>&text=<?php echo $post->title ?>&tw_p=tweetbutton&url=http%3A%2F%2Fwww.flikbuk.com%2F<?php echo $keyWithoutExtn ?>" target="_blank"></a>
 </div>	
 <input type="hidden" value="http://<?php echo $_SERVER['HTTP_HOST']?>/<?php echo $post->post_key?>" name="postLink" id="postLinkInput"/>
+<?php }?>
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];

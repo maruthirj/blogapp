@@ -192,6 +192,17 @@ class ContentController extends BaseController {
 				break;
 			   }
 			}
+		}else if(strlen(Input::get('search'))!=0){
+			//Search dialog
+			$searchStr = Input::get('search');
+			Log::debug("Searching for a term: ".$searchStr);
+			$tag = Tag::whereRaw('name like ?',array('%'.$searchStr.'%'))->first();
+			if($tag!=null){
+				Log::debug($tag);
+				$post = $tag->posts()->first();
+			}else{
+				$post = Post::whereRaw('title like ?',array('%'.$searchStr.'%'))->first();
+			}
 		}else if(strlen($searchStr)!=0){
 			Log::debug("Key search");
 			$post = Post::where('post_key', 'like', $searchStr."%")->first();
@@ -202,9 +213,11 @@ class ContentController extends BaseController {
 			$post = Post::orderByRaw("RAND()")->first();
 			Log::debug("Post: ".$post);
 		}
-		$user = User::where('id', '=', $post->user_id)->first();
-		$post->user = $user;
-		Log::debug("User for post: ".$user);
+		if($post!=null){
+			$user = User::where('id', '=', $post->user_id)->first();
+			$post->user = $user;
+			Log::debug("User for post: ".$user);
+		}
 		$data = array("post"=>$post);
 		return View::make('includes.decorator', $data)->nest('contentView', 'welcome', $data);
 	}
