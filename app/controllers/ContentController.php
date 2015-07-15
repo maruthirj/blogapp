@@ -275,7 +275,7 @@ class ContentController extends BaseController {
 		}
 		//If a related post not found, find any other post
 		$postFound = "";
-		$postArr = Post::whereNotIn('post_key', array_keys($keysArray))->get();
+		$postArr = Post::whereNotIn('post_key', array_keys($keysArray))->orderBy('id', 'desc')->get();
 		$postSize = sizeof($postArr);
 		$randIndex = rand(0,$postSize-1);
 		$attempts=0;
